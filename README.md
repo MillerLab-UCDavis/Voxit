@@ -10,9 +10,7 @@ http://www.wakayama-u.ac.jp/~kawahara/STRAIGHTadv/index_e.html
 https://github.com/dpwe/SAcC
 
 3) Download from the Vocal_Analysis_Tools repo the three directories:
-codeToReplaceInEllisPitchTracker
-codeDependencies
-codeVocalAnalyses
+codeToReplaceInEllisPitchTracker, codeDependencies, and codeVocalAnalyses. Note that codeDependencies will eventually be replaced. At the moment they contain functions available on Matlab Central or the ERPlab toolbox.
 
 4) From directory codeToReplaceInEllisPitchTracker, replace the three functions in the SAcC directory:
 autocorrelogram.m
@@ -27,4 +25,6 @@ If you have trouble, check your compiler in Matlab:>> myCCompiler = mex.getCompi
 
 6) Update the paths at the beginning of SAcCWrapper.m and STRAIGHTaudio2objectWrapper.m to reflect your own directory organization.
 
-7) Run STRAIGHTaudio2objectWrapper.m on your audio files, followed by vocAnalWrapper.m
+7) Run STRAIGHTaudio2objectWrapper.m on your audio files, followed by vocAnalWrapper.m. 
+
+8) Enjoy the vocal analysis values in the output csv file
