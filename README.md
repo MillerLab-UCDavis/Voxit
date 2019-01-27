@@ -34,7 +34,8 @@ If you have trouble, check your compiler in Matlab:>> myCCompiler = mex.getCompi
 		and get one if you need to https://www.mathworks.com/support/compilers.html
 
 7) So far, Matlab may not know where to find your vocal analysis code. To avoid having to tell it every time you restart, you can add it to a startup.m file (saved anywhere on your default matlab path). At the command line, try 
->> open startup.m
+   open startup.m
+
 If you don't have one, make one e.g. your matlab installation folder.  https://www.mathworks.com/help/matlab/ref/startup.html
 
 In startup.m, which is just a text file, simply a line like this with path pointing to wherever you put your "vocalcode" folder:
