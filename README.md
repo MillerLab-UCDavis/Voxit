@@ -58,6 +58,4 @@ As per M. Morise's request on Github https://github.com/mmorise/World, when you 
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
 
-7) Run STRAIGHTaudio2objectWrapper.m on your audio files, followed by vocAnalWrapper.m. 
 
-8) Enjoy the vocal analysis values in the output csv file
