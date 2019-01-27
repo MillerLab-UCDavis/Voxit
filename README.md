@@ -18,19 +18,21 @@ codeToReplaceInEllisPitchTracker
 codeVocalAnalyses
 For convenience, put it in the same "vocalcode" folder as WORLD and SAcC
 
-3) Download from the Vocal_Analysis_Tools repo the two directories:
-->codeToReplaceInEllisPitchTracker
-->codeVocalAnalyses
+3) Download from the Vocal_Analysis_Tools repo the two directories:\
+codeToReplaceInEllisPitchTracker\
+codeVocalAnalyses
 
-4) From the Github directory codeToReplaceInEllisPitchTracker, REPLACE the three functions in the SAcC directory:
--> autocorrelogram.m
--> autocorrSAcC.m
--> SAcC_main.m
+4) From the Github directory codeToReplaceInEllisPitchTracker, REPLACE the three functions in the SAcC directory:\
+autocorrelogram.m\
+autocorrSAcC.m\
+SAcC_main.m
 
 5) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
 download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the SAaC directory
-From within matlab, in the SAaC directory, enter >> mex autocorr.c. This should create a mex file, e.g. autocorr.mexw64
-If you have trouble, check your compiler in Matlab:>> myCCompiler = mex.getCompilerConfigurations('C','Selected')
+From within matlab, in the SAaC directory, enter \
+>> mex autocorr.c. This should create a mex file, e.g. autocorr.mexw64
+If you have trouble, check your compiler in Matlab:\
+>> myCCompiler = mex.getCompilerConfigurations('C','Selected')
 		and get one if you need to https://www.mathworks.com/support/compilers.html
 
 7) So far, Matlab may not know where to find your vocal analysis code. To avoid having to tell it every time you restart, you can add it to a startup.m file (saved anywhere on your default matlab path). At the command line, try >> open startup.m    If you don't have one, make one e.g. your matlab installation folder. https://www.mathworks.com/help/matlab/ref/startup.html
@@ -38,10 +40,9 @@ If you have trouble, check your compiler in Matlab:>> myCCompiler = mex.getCompi
 
 
 You're done setting up!  Now for each set of audio files you want to analyze:
-i) Within Matlab, go to the directory containing the audio files, and run WORLDaudio2objectWrapper.m, followed by
+\i) Within Matlab, go to the directory containing the audio files, and run WORLDaudio2objectWrapper.m, followed by
 	vocAnalWrapper.m
-
-ii) Enjoy the vocal analysis values in the output csv file!
+\ii) Enjoy the vocal analysis values in the output csv file!
 
 
 ___________________________________________________________________
