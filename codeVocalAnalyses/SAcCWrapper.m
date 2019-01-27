@@ -1,22 +1,27 @@
 function [pfreq,times]=SAcCWrapper(filename);
-% FUNCTION SAAC WRAPPER
+% FUNCTION SAcC WRAPPER
 %  Wrapper for Dan Ellis' subband autocorrelation pitch tracker 
 % https://github.com/dpwe/SAcC
-% Lee M. Miller 3/2018
 
-dirSAaC = %specify your path to the SAaC pitch tracker ;
-warning('MAKE SAcC DIRECTORY RELATIVE NOT ABSOLUTE')
-addpath(dirSAaC);
+%klunky way to find SAaC path. Maybe a problem: make Matlab window wide before running, or the directory listings will be truncated?
+strToFind = 'EllisPitchTracker'; % Return all search path directories containing this string
+dirs = regexp(path,['[^;]*'],'match'); % List all paths in search path and break them into a cell array  
+whichCellEntry = find(cellfun(@(dirs) ~isempty( strfind(dirs, strToFind) ), dirs) == 1);% Index to cell entries containing the desired string
+if length(whichCellEntry)>1
+    error('More than one EllisPitchTracker directory on your path')
+end
+SAaCpath = [dirs{whichCellEntry}  filesep];
+%addpath(SAaCpath);
 
 [fpath,fn,fext] = fileparts(filename);
 out_file = [fpath filesep fn 'SAcC.mat'];
 
-config_file = [dirSAaC 'conf' filesep 'rats_sr8k_bpo6_sb24_k10.config'];
+config_file = [SAaCpath filesep 'conf' filesep 'rats_sr8k_bpo6_sb24_k10.config'];
 [P,D] = config_read_srs(config_file);
 P = config_default(P); % note this is just getting remaining defaults for 2012 code not 2013 SAcC update. See end of script for all the new defaults
 
-disp('RUNNING SAcC. WARNING: SUBSTITUTE weights and other params from UPDATED https://github.com/maxhawkins/drift/blob/master/ellis/SAcC.py#L33') 
-disp('take out any parameters NOT set in python?')
+%disp('RUNNING SAcC. May correspond better with Drift using weights and other params from UPDATED https://github.com/maxhawkins/drift/blob/master/ellis/SAcC.py#L33') 
+%disp('take out any parameters NOT set in python?')
 
 % P.pca_file = 'aux/updated_pca_sr8k_bpo6_sb24_k10.mat';
 % P.wgt_file = 'aux/updated_sub_qtr_rats_keele_sr8k_bpo6_sb24_k10_ep5_h100.wgt';
@@ -37,7 +42,7 @@ P.SBF_bpo = 6.0;
 P.SBF_q = 8.0;  % not actually used for SlanPat ERB filters
 P.SBF_order = 2;  % not actually used for SlanPat ERB filters
 P.SBF_ftype = 2;  % ignored in python, which is is always SlanPat ERB
-    disp('check if matlab and python filters are the same')
+%disp('check if matlab and python filters are the same')
 P.twin = 0.025;  %autoco window len
 P.thop = 0.010;
 P.hmm_vp = 0.1; % interpretation changed python is 0.9
@@ -49,8 +54,8 @@ P.write_pitch = 1;
 Pwrite_pvx = 1;
 
 
-P.dirSAcC = dirSAaC;
-% fix slashes and add underscore for windows paths
+P.dirSAcC = SAaCpath;
+% fix slashes and add underscore for windows paths (better yet, make it platform-independent!)
 P.pca_file(findstr(P.pca_file,'/'))= '\';
 P.pca_file   = ['w' P.pca_file];
 P.wgt_file(findstr(P.wgt_file,'/'))= '\';
@@ -58,7 +63,7 @@ P.wgt_file   = ['w' P.wgt_file];
 P.norms_file(findstr(P.norms_file,'/'))= '\';
 P.norms_file = ['w' P.norms_file];
 P.pcf_file(findstr(P.pcf_file,'/'))= '\';
-P.pcf_file   = [dirSAaC 'w' P.pcf_file]; % this one is called without the full path, in SAaC_pitchtrack.m, so add path here
+P.pcf_file   = [SAaCpath 'w' P.pcf_file]; % this one is called without the full path, in SAaC_pitchtrack.m, so add path here
 
 
 %% main function
