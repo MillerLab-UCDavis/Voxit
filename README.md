@@ -44,8 +44,8 @@ In startup.m, which is just a text file, simply a line like this with path point
 
 You're done setting up!  Now for each set of audio files you want to analyze:\
 i) Within Matlab, go to the directory containing the audio files, and run WORLDaudio2objectWrapper.m, followed by
-	vocAnalWrapper.m
-ii) Enjoy the vocal analysis values in the output csv file!\
+	vocAnalWrapper.m\
+ii) Enjoy the vocal analysis values in the output csv file!
 
 
 ___________________________________________________________________
