@@ -19,13 +19,13 @@ codeVocalAnalyses
 For convenience, put it in the same "vocalcode" folder as WORLD and SAcC
 
 3) Download from the Vocal_Analysis_Tools repo the two directories:
-codeToReplaceInEllisPitchTracker
-codeVocalAnalyses
+->codeToReplaceInEllisPitchTracker
+->codeVocalAnalyses
 
 4) From the Github directory codeToReplaceInEllisPitchTracker, REPLACE the three functions in the SAcC directory:
-autocorrelogram.m
-autocorrSAcC.m
-SAcC_main.m
+-> autocorrelogram.m
+-> autocorrSAcC.m
+-> SAcC_main.m
 
 5) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
 download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the SAaC directory
