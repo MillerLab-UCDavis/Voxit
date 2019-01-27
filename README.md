@@ -13,15 +13,14 @@ Put WORLD in a sensible folder, name it whatevery you want - let's call it "voca
 https://github.com/dpwe/SAcC
 For convenience, put it in the same "vocalcode" folder as WORLD.
 
-<<<<<<< HEAD
 3) Download from this Vocal_Analysis_Tools repo the two directories:
 codeToReplaceInEllisPitchTracker
 codeVocalAnalyses
 For convenience, put it in the same "vocalcode" folder as WORLD and SAcC
-=======
-3) Download from the Vocal_Analysis_Tools repo the three directories:
-codeToReplaceInEllisPitchTracker, codeDependencies, and codeVocalAnalyses. Note that codeDependencies will eventually be replaced. At the moment they contain functions available on Matlab Central or the ERPlab toolbox.
->>>>>>> d98c46a578eff979927a2281ce3538bd6b17fa8c
+
+3) Download from the Vocal_Analysis_Tools repo the two directories:
+codeToReplaceInEllisPitchTracker
+codeVocalAnalyses
 
 4) From the Github directory codeToReplaceInEllisPitchTracker, REPLACE the three functions in the SAcC directory:
 autocorrelogram.m
@@ -38,7 +37,6 @@ If you have trouble, check your compiler in Matlab:>> myCCompiler = mex.getCompi
 >> open startup.m
 If you don't have one, make one e.g. your matlab installation folder.  https://www.mathworks.com/help/matlab/ref/startup.html
 
-<<<<<<< HEAD
 In startup.m, which is just a text file, simply a line like this with path pointing to wherever you put your "vocalcode" folder:
 addpath(genpath('C:\users\me\importantStuff\vocalcode'));
 
@@ -59,8 +57,7 @@ Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelati
 As per M. Morise's request on Github https://github.com/mmorise/World, when you cite the latest version of WORLD in your article, please include the following:
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
-=======
+
 7) Run STRAIGHTaudio2objectWrapper.m on your audio files, followed by vocAnalWrapper.m. 
 
 8) Enjoy the vocal analysis values in the output csv file
->>>>>>> d98c46a578eff979927a2281ce3538bd6b17fa8c
