@@ -13,11 +13,6 @@ Put WORLD in a sensible folder, name it whatevery you want - let's call it "voca
 https://github.com/dpwe/SAcC \
 For convenience, put it in the same "vocalcode" folder as WORLD.
 
-3) Download from this Vocal_Analysis_Tools repo the two directories:\
-codeToReplaceInEllisPitchTracker\
-codeVocalAnalyses\
-For convenience, put them in the same "vocalcode" folder as WORLD and SAcC
-
 3) Download from the Vocal_Analysis_Tools repo the two directories:\
 codeToReplaceInEllisPitchTracker\
 codeVocalAnalyses\
@@ -29,7 +24,7 @@ autocorrSAcC.m\
 SAcC_main.m
 
 5) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
-download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the SAaC directory
+download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the Ellis directory
 From within matlab, in the SAaC directory, enter\
   mex autocorr.c. This should create a mex file, e.g. autocorr.mexw64
 If you have trouble, check your compiler in Matlab:\
