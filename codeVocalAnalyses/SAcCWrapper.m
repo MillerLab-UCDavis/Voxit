@@ -5,10 +5,15 @@ function [pfreq,times]=SAcCWrapper(filename);
 
 %klunky way to find SAaC path. Maybe a problem: make Matlab window wide before running, or the directory listings will be truncated?
 strToFind = 'EllisPitchTracker'; % Return all search path directories containing this string
-dirs = regexp(path,['[^;]*'],'match'); % List all paths in search path and break them into a cell array  
+if ispc %LMM190214 added annoying check to work across OS
+    dirs = regexp(path,['[^;]*'],'match'); % List all paths in search path and break them into a cell array 
+else
+    dirs = regexp(path,['[^:]*'],'match'); % List all paths in search path and break them into a cell array 
+end
 whichCellEntry = find(cellfun(@(dirs) ~isempty( strfind(dirs, strToFind) ), dirs) == 1);% Index to cell entries containing the desired string
 if length(whichCellEntry)>1
-    error('More than one EllisPitchTracker directory on your path')
+    warning('More than one EllisPitchTracker directory on your path. Taking the first, presumed top level.')
+    whichCellEntry = whichCellEntry(1);
 end
 SAaCpath = [dirs{whichCellEntry}  filesep];
 %addpath(SAaCpath);
@@ -56,13 +61,13 @@ Pwrite_pvx = 1;
 
 P.dirSAcC = SAaCpath;
 % fix slashes and add underscore for windows paths (better yet, make it platform-independent!)
-P.pca_file(findstr(P.pca_file,'/'))= '\';
+P.pca_file(findstr(P.pca_file,'/'))= filesep;
 P.pca_file   = ['w' P.pca_file];
-P.wgt_file(findstr(P.wgt_file,'/'))= '\';
+P.wgt_file(findstr(P.wgt_file,'/'))= filesep;
 P.wgt_file   = ['w' P.wgt_file];
-P.norms_file(findstr(P.norms_file,'/'))= '\';
+P.norms_file(findstr(P.norms_file,'/'))= filesep;
 P.norms_file = ['w' P.norms_file];
-P.pcf_file(findstr(P.pcf_file,'/'))= '\';
+P.pcf_file(findstr(P.pcf_file,'/'))= filesep;
 P.pcf_file   = [SAaCpath 'w' P.pcf_file]; % this one is called without the full path, in SAaC_pitchtrack.m, so add path here
 
 
