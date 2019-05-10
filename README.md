@@ -10,8 +10,9 @@ http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html \
 Put WORLD in a sensible folder, name it whatevery you want - let's call it "vocalcode" - and remember where it is.
 
 2) Download the Matlab version of Dan Ellis' Subband Autocorrelation Classificiation (SAcC) pitch tracker.
-https://github.com/dpwe/SAcC \
-For convenience, put it in the same "vocalcode" folder as WORLD.
+https://github.com/dpwe/SAcC 
+
+For convenience, put it in the same "vocalcode" folder as WORLD, and please name the SAcC folder "EllisPitchTracker"
 
 3) Download from the Vocal_Analysis_Tools repo the two directories:\
 codeToReplaceInEllisPitchTracker\
@@ -41,7 +42,6 @@ You're done setting up!  Now for each set of audio files you want to analyze:\
 i) Within Matlab, go to the directory containing the audio files, and run WORLDaudio2objectWrapper.m, followed by
 	vocAnalWrapper.m\
 ii) Enjoy the vocal analysis values in the output csv file!
-
 
 ___________________________________________________________________
 Acknowledgments:
