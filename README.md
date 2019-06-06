@@ -1,4 +1,4 @@
-# Vocal_Analysis_Tools
+# VOXIT: Vocal Analysis Tools
 Matlab functions to analyze vocal parameters, in collaboration with Marit MacArthur and Robert Ochshorn (author of Gentle and Drift http://www.rmozone.com/).
 
 INSTRUCTIONS\
@@ -47,7 +47,7 @@ ___________________________________________________________________
 Acknowledgments:
 
 When you cite the Ellis SAaC algorithm, please include the article:
-Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classificationî. in Interspeech. 2012. Portland.
+Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classification‚Äù. in Interspeech. 2012. Portland.
 
 As per M. Morise's request on Github https://github.com/mmorise/World, when you cite the latest version of WORLD in your article, please include the following:
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
