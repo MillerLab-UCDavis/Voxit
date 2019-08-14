@@ -28,7 +28,7 @@ autocorrelogram.m\
 autocorrSAcC.m\
 SAcC_main.m
 
-and ADD the directory waux
+and ADD the directory waux (this just replicates Ellis' "aux" directory, but Windows has a big problem with directories called "aux")
 
 5) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
 download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the Ellis directory
