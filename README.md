@@ -13,6 +13,9 @@ Put WORLD in a sensible folder, name it whatevery you want - let's call it "voca
 https://github.com/dpwe/SAcC 
 
 For convenience, put it in the same "vocalcode" folder as WORLD, and please name the SAcC folder "EllisPitchTracker"
+First, rename the function in EllisPitchTracker "audioread.m" to be something else, because it conflicts with a matlab function.
+e.g. rename it to be "audioreadELLIS.m"
+Within the EllisPitchTracker folder, RENAME folder "aux" to be "waux", because 
 
 3) Download from the Vocal_Analysis_Tools repo the two directories:\
 codeToReplaceInEllisPitchTracker\
