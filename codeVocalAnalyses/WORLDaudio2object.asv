@@ -169,8 +169,8 @@ if exist(gentlefile,'file')
     %Gtimes = Gnum(:,3:4); %assuming start and stop times of words are columns 3 and 4
     Gtimes = round(Gnum.*10000)./10000; %round to nearest 10th of a millisecond to avoid aberrant rounding errors in csv
     fsG = 100; %assumes gentle sampling rate of 100Hz or period of 10ms
-    GtimesNoNaN = Gtimes(~isnan(Gtimes)); % Gentle (fall 2019) outputs NaNs for non-aligned words. Ignore those when checking sampling rate.
-    if find(mod(GtimesNoNaN,1/fsG))
+    GtimesNoNaN = Gtimes(~isNaN
+    if find(mod(Gtimes,1/fsG))
         error('Gentle sampling rate was assumed to be 100Hz, but csv file times are not multiples of period 10ms');
     end
     S.gentle.Gnum = Gnum;

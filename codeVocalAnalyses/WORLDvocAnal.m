@@ -199,7 +199,7 @@ if isfield(S,'drift')  % keep in mind the drift data is probably 10ms sampling p
     S.analysis.Driftf0 = S.drift.f0drift;
     S.analysis.Driftf0Mean = f0meanD;
     S.analysis.Driftf0Range = max(diffoctf0D(ivuvD))-min(diffoctf0D(ivuvD));
-    S.analysis.f0Range2sd = quantile(diffoctf0D(ivuvD),.975) - quantile(diffoctf0D(ivuvD),.025); %range of 2 standard deviations, so appx 95% of values in this range
+    S.analysis.Driftf0Range2sd = quantile(diffoctf0D(ivuvD),.975) - quantile(diffoctf0D(ivuvD),.025); %range of 2 standard deviations, so appx 95% of values in this range
     S.analysis.Driftf0Kurtosis = kurtosis(diffoctf0D(ivuvD))-3; %-3 so zero is a normal distribution
     S.analysis.Driftf0Entropy = f0entropyD;
     %figure, hist(diffoctf0(ivuv),40);title([' kurtosis ' num2str(S.analysis.f0kurtosis)]);
@@ -281,7 +281,7 @@ if isfield(S,'gentle')
     for i=1:size(ixGpauses) % set array to zero during all pauses
         Gsps(round(S.gentle.Gtimes(ixGpauses(i),2).*S.gentle.fsG)+1 : round(S.gentle.Gtimes(ixGpauses(i)+1,1).*S.gentle.fsG)-1) = 0;
     end
-    ixWord1 = S.gentle.Gnum(1,3)*S.gentle.fsG +1;
+    ixWord1 = S.gentle.Gnum(1,1)*S.gentle.fsG +1;
     GspsCrop = Gsps(ixWord1:end);  % crop off beginning silence; start at first word onset
     
     S.analysis.Gentlesps = Gsps;
