@@ -406,8 +406,11 @@ for ll = 1:size(ixPhraseBounds,1)
 end
 vuvPhrase = zeros(length(vuv),1); 
 vuvPhrase(iPhrase) = 1; 
-S.analysis.ComplexityPhrases = 100.*calc_lz_complexity(vuvPhrase, 'exhaustive', 1); %note, complexity may depend on sampling period!
-
+try  % this catch is for the occasional recording that has only acoustically indistinct syllables
+    S.analysis.ComplexityPhrases = 100.*calc_lz_complexity(vuvPhrase, 'exhaustive', 1); %note, complexity may depend on sampling period!
+catch
+    S.analysis.ComplexityPhrases = NaN;
+end
 
 %% CORRELATIONS
 %PITCH AND INTENSITY
