@@ -144,7 +144,7 @@ end
 S.analysis.f0 = S.SAcC.f0;
 S.analysis.f0Mean = f0mean;
 S.analysis.f0Range = max(diffoctf0(ivuv))-min(diffoctf0(ivuv));
-S.analysis.f0Range2sd = quantile(diffoctf0(ivuv),.975) - quantile(diffoctf0(ivuv),.025); %range of 2 standard deviations, so appx 95% of values in this range
+S.analysis.f0Range2sd = quantile(diffoctf0(ivuv),.975) - quantile(diffoctf0(ivuv),.025); % 95% of values in this range; appx 2 standard deviations for normal distribution
 S.analysis.f0Kurtosis = kurtosis(diffoctf0(ivuv))-3; %-3 so zero is a normal distribution
 S.analysis.f0Entropy = f0entropy;
 %figure, hist(diffoctf0(ivuv),40);title([' kurtosis ' num2str(S.analysis.f0kurtosis)]);
