@@ -4,35 +4,35 @@ Matlab functions to analyze vocal parameters, by Lee M. Miller (https://millerla
 INSTRUCTIONS\
 Get started analyzing vocal recordings in a few easy steps:
 
+0) Make a local directory or folder to put the code, in any sensible place like C:\Users\you\Voxit, and and remember where it is. In the following instructions, we'll call this your ~/Voxit directory.
+
 1) Obtain WORLD, Masanori Morise's speech analysis system, for Matlab (which follows on Hideki Kawahara's
 TANDEM-STRAIGHT), here:\
 http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html \
-Put WORLD in a sensible folder, name it whatevery you want - let's call it "vocalcode" - and remember where it is.
+The WORLD directory will be called something like world-0.2.1_4_matlab. Put this *inside* your ~/Voxit directory.
 
 2) Download the Matlab version of Dan Ellis' Subband Autocorrelation Classificiation (SAcC) pitch tracker.
 https://github.com/dpwe/SAcC 
 
-For convenience, put it in the same "vocalcode" folder as WORLD, and please name the SAcC folder "EllisPitchTracker"
-First, rename the function in EllisPitchTracker "audioread.m" to be something else, because it conflicts with a matlab function.
+Put this inside vour ~/Voxit directory along with the WORLD directory, and  rename the SAcC folder "EllisPitchTracker"
+Also RENAME the function in EllisPitchTracker "audioread.m" to be something else, because it conflicts with a Matlab function.
 e.g. rename it to be "audioreadELLIS.m"
-Within the EllisPitchTracker folder, RENAME folder "aux" to be "waux", because 
+Finally within the EllisPitchTracker directory, RENAME directory "aux" to be "waux", because Windows forbids directories with that name.
 
 3) Download from the Vocal_Analysis_Tools repo the two directories:\
 codeToReplaceInEllisPitchTracker\
 codeVocalAnalyses\
-Once again, for convenience, put them in the same "vocalcode" folder as WORLD and SAcC
+Once again, put these in your ~/Voxit directory alongside your WORLD and EllisPitchTracker directories
 
-4) From the Github directory codeToReplaceInEllisPitchTracker, in your SAcC directory:
+4) From the Github directory codeToReplaceInEllisPitchTracker, in your EllisPitchTracker directory:
 REPLACE the three functions:
 autocorrelogram.m\
 autocorrSAcC.m\
 SAcC_main.m
 
-and ADD the directory waux (this just replicates Ellis' "aux" directory, but Windows has a big problem with directories called "aux")
-
 5) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
-download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the Ellis directory
-From within matlab, in the SAaC directory, enter\
+download it from here https://github.com/dpwe/calc_sbpca/blob/master/autocorr.c and put it in the EllisPitchTracker directory
+From within matlab, in the EllisPitchTracker directory, enter\
   mex autocorr.c. This should create a mex file, e.g. autocorr.mexw64
 If you have trouble, check your compiler in Matlab:\
   myCCompiler = mex.getCompilerConfigurations('C','Selected')
