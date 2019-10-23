@@ -36,7 +36,7 @@ Congratulations, you're done setting up!
 
 <h2>HOW TO USE VOXIT</h2>
 <h2For each set of audio files you want to analyze:</h2>
-\
+
 *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again.  
 ii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.\
 \
@@ -57,7 +57,7 @@ Please also cite WORLD. As per M. Morise's request on [Github](https://github.co
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
 
 <h2>LICENSES:</h2>
-The SAcC code is use with permission from Dan Ellis and respects the [BSD 2 Clause license](https://opensource.org/licenses/BSD-2-Clause)
+The SAcC code is use with permission from Dan Ellis and respects the [BSD 2 Clause license](https://opensource.org/licenses/BSD-2-Clause/)
 
 The version of WORLD cloned for use in Voxit is presently v0.2.3 for Matlab and can be found [here](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html), respecting the license terms specified in ./WORLD/DOC/copying.txt and [here](https://github.com/mmorise/World/blob/master/LICENSE.txt).  
 
