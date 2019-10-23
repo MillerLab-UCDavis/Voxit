@@ -15,7 +15,7 @@ The WORLD directory will be called something like world-0.2.1_4_matlab. Rename t
 https://github.com/dpwe/SAcC \
 Unzip the download.
 If you get an error unzipping the "aux" folder, click "Skip" (Windows forbids directories with that name).
-If you don't get an error during unzipping, then DELETE the "aux" folder.\
+If you don't get an error during unzipping, then DELETE the "aux" folder. \
 
 Put this SAcC directory inside vour ~/Voxit directory along with WORLD, and  rename the SAcC folder "EllisPitchTracker"
 Also RENAME the function in EllisPitchTracker "audioread.m" to be something else, because it conflicts with a Matlab function.
