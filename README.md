@@ -56,9 +56,9 @@ ___________________________________________________________________
 Acknowledgments:
 
 When you cite the Ellis SAaC algorithm, please include the article:
-Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classification”. in Interspeech. 2012. Portland.
+Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classification”. in Interspeech. 2012. Portland. Minor changes were required for SAaC to work with Voxit, and these are noted in the code.
 
-The version of WORLD cloned for use in Voxit is presently v0.2.3 for Matlab and can be found here http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html, respecting the license terms specified at https://github.com/mmorise/World/blob/master/LICENSE.txt.  As per M. Morise's request on Github https://github.com/mmorise/World, when you cite the latest version of WORLD in your article, please include the following:
+The version of WORLD cloned for use in Voxit is presently v0.2.3 for Matlab and can be found here http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html, respecting the license terms specified in ./WORLD/DOC/copying.txt and at https://github.com/mmorise/World/blob/master/LICENSE.txt.  As per M. Morise's request on Github https://github.com/mmorise/World, when you cite the latest version of WORLD in your article, please include the following:
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
 
