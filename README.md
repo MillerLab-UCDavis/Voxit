@@ -7,8 +7,8 @@ Get started analyzing vocal recordings in a few easy steps:
 1) Make a local directory or folder to put the code, in any sensible place like C:\Users\you\Voxit, and and remember where it is. In the following instructions, we'll call this your ~/Voxit directory.
 
 2) Download Voxit by clicking the green "Clone or Download" button here on the Voxit Github page, and click "Download ZIP". Save in any convenient place and unzip it. When you unzip the file, you'll have a "Voxit-Master" directory with three directories within it:\
-EllisPitchTracker
-Voxit
+EllisPitchTracker\
+Voxit\
 WORLD\
 \
 (Voxit is the part that we develop. [WORLD](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html) is Masanori Morise's wonderful speech analysis system, for Matlab (which follows on Hideki Kawahara's TANDEM-STRAIGHT). EllisPitchTracker is Dan Ellis' [Subband Autocorrelation Classificiation (SAcC) pitch tracker](https://github.com/dpwe/SAcC), gently modified to work with Voxit)\
@@ -30,12 +30,14 @@ addpath('C:\Users\you\Voxit\WORLD');\
 addpath('C:\Users\you\Voxit\EllisPitchTracker');\
 \
 At the Matlab command prompt >> , type *startup"* and enter, so Matlab learns the Voxit paths you just added (or just restart Matlab, which runs startup.m automatically).\
+\
 Congratulations, you're done setting up!  
 
 
 <h2>HOW TO USE VOXIT</h2>
 <h2For each set of audio files you want to analyze:</h2>
-i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again.  
+\
+*Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again.  
 ii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.\
 \
 
