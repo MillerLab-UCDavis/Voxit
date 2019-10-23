@@ -1,17 +1,21 @@
-function [] = WORLDaudio2objectWrapper(overwrite)
-% Sets up variables for and calls WORLDaudio2object, which writes a
-% '_Wobj.mat' file for each audio file
+function [] = voxitPrepWrapper(overwrite,spectKeep)
+% Sets up variables for and calls voxitPrep, which writes a
+% '_Vobj.mat' file for each audio file
 % Make sure folder names only contain non-extended ascii, non-special
 % characters, which may break some functions. Filenames with said
 % characters will be automatically renamed.
 %
 %   overwrite   default 1 = re-run all (specified) files
 %                       0 = skip any files that already have an associated
-%                       Wobj.mat file
+%                       Vobj.mat file
 %                      
-% copyright Lee M. Miller 2016, latest mods 01/2019
+% copyright Lee M. Miller, latest mods 11/2019
+
 if ~exist('overwrite','var')
     overwrite = 1; 
+end
+if ~exist('spectKeep','var')
+    spectKeep = 0; % If you want to keep the spectrogram for later resynthesis, set this variable = 1;
 end
 
 filepath = pwd;
@@ -42,10 +46,10 @@ for f = 1:length(fileinAudio)
     end
             
     [dummy1,fname,dummy2] = fileparts(fileinAudio{f});
-    Sfile = [fname '_Wobj.mat'];
+    Sfile = [fname '_Vobj.mat'];
     if overwrite == 1 | ~exist(['./' Sfile],'file')
-        disp(['Converting ' fileinAudio{f} ' audio to WORLD object']);
-        [WORLDobject] = WORLDaudio2object(filepath,fileinAudio{f});
+        disp(['Converting ' fileinAudio{f} ' audio to Voxit object']);
+        voxitPrep(filepath,fileinAudio{f},spectKeep);
     end
 end
 

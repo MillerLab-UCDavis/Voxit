@@ -1,15 +1,15 @@
-function [S] = WORLDaudio2object(filepath,file,SAcCresynth,spectKeep)
-%% Test script for basic WORLD analysis and synthesis
+function [S] = VoxitPrep(filepath,file,spectKeep,SAcCresynth)
+%% Voxit prep script for basic WORLD analysis and synthesis
 % Important bits modified from WORLDs exampleScriptForAnalysisAndSynthesis.m
 % INPUTS
 %   filepath:   file path        
 %   file:       audio filename
-%   SAcCresynth: use the SAcC pitch when resythesizing audio
 %   spectKeep   keep spectrogram and aperiodicity as part of the output structure in order
 %               to resythesize later (takes up lots of space and memory). Default = 0
+%   SAcCresynth: use the SAcC pitch when resythesizing audio
 %
 % OUTPUTS
-%   S           WORLD structure
+%   S           WORLD/Voxit structure
 %  
 % IF there exist output files from DRIFT and GENTLE with identical
 % filenames to the audio files, except with '-drift.csv' and '-gentle.csv', this
@@ -20,19 +20,20 @@ function [S] = WORLDaudio2object(filepath,file,SAcCresynth,spectKeep)
 %
 % For multi-channel audio, this function only uses the first channel.
 %   
-% copyright Lee M. Miller 2016, latest mods 01/2018 version 1.1
+% copyright Lee M. Miller, latest mods 11/2019
 
 
 %%  Initialize conditions
 if ~strcmp(filepath(end),filesep)
     filepath = [filepath filesep];
 end
+if ~exist('spectKeep','var')
+    spectKeep = 0; % If you want to keep the spectrogram for later resynthesis, set this variable = 1;
+end
 if ~exist('SAcCresynth','var')
     SAcCresynth = 0; % If you want to use the Ellis algorithm for resynthesis, set this variable 1;
 end
-if ~exist('spectKeep','var')
-    spectKeep = 0; % If you want to keep the spectrogram for later resynthesis, set this variable 1;
-end
+
 
 
 %%  Read speech data from a file
@@ -54,11 +55,13 @@ S.source_parameter = D4C(x, fs, S.f0_parameter);
 %% SAcC: Get a better F0 estimate for later analysis, NOT (yet) for resynthesis using SAcC. This uses Dan Ellis Subband PCA Autocorrelation algo. 
 % We do this always, to resample and add the SAcC (and if applicable, the drift) f0 and vuv to the WORLD structure, regardless 
 % of whether SAcC or drift is used to overwrite the WORLD f0 and thus be used in resynthesis.  The latter decision is in the  cell below.
-disp('Warning: ASSUMING WORLD sampling period 5ms, SAcC/drift period 10ms, both starting at time 0! Fix this if not true')
 % Resample and include SAcC pitch, vuv in S structure
 [psacc,tsacc]=SAcCWrapper([filepath file]);
 tsacc = round(tsacc*1000)/1000; %damn SAcC times can have an extra tiny significant digit. round to nearest ms 
 tworld = S.f0_parameter.temporal_positions;
+if (psacc(2)-psacc(1) ~= 0.01) & (tworld(2)-tworld(1) ~= 0.005) & psacc(1)~=0 & tworld(1)~=0
+   error('Check sampling times: WORLD should have sampling period 5ms, SAcC/drift should have period 10ms, both starting at time 0.')
+end
 pnewSAcC = S.f0_parameter.f0; %SAcC will overwrite some of these values, so will be the conjunction of WORLD and (interpolated) SAcC f0, in case its needed  for resynthesis below.
 vuvnewSAcC = S.f0_parameter.vuv; % to be the conjunction of WORLD and (interpolated )SAcC voicing, in case its needed  for resynthesis below.
 f0tmp = zeros(length(pnewSAcC),1); % this just keeps the SAcC values, doesn't combine with WORLD f0, for SAcC-only analysis
@@ -147,7 +150,7 @@ if exist(driftfile,'file')
     S.drift.f0interp = f0tmp;  
     S.drift.vuvinterp = vuvtmp;   
 else
-    disp(['Could not find file ' driftfile '. Proceeding without it...']);
+    disp(['Could not find file ' driftfile '. It is not required, proceeding without it...']);
 end
 % Notice we have NOT overwritten the S.f0_parameter.pnewDrift or .vuvnewDrift. We dedide that next...
 
@@ -178,7 +181,7 @@ if exist(gentlefile,'file')
     S.gentle.Gtimes = Gtimes;
     S.gentle.fsG =  fsG;
 else
-    disp(['Could not find file ' gentlefile '. Proceeding without it...']);
+    disp(['Could not find file ' gentlefile '. It is not required, proceeding without it...']);
 end
 
 %% plot spectrogram
@@ -194,7 +197,7 @@ end
 
 
 %% (Re)Synthesize and Save WORLD object
-disp('(Re)Synthesizing and saving WORLD object')
+disp('(Re)Synthesizing and saving WORLD/Voxit object')
 
 synth = Synthesis(S.source_parameter, S.spectrum_parameter);
 fs_synth = fs;
@@ -209,24 +212,32 @@ S.source_parameter = rmfield(S.source_parameter,'f0_candidates');
 S.source_parameter = rmfield(S.source_parameter,'coarse_ap');
 
 if ~spectKeep
-    disp('After synthesis, replacing spectrogram with log power to reduce memory load in later analyses.')
+    disp('After synthesis, replacing spectrogram with overall power to reduce memory load in later analyses. But this will limit some analyses or modifications!')
     linPower = sum(S.spectrum_parameter.spectrogram./max(max(S.spectrum_parameter.spectrogram)))'; % scale to equalize across recordings
     S.spectrum_parameter.linPower = linPower;
     S.spectrum_parameter = rmfield(S.spectrum_parameter,'spectrogram')
     S.source_parameter = rmfield(S.source_parameter,'aperiodicity');
 end
 
-Sfileout = [filepath fname '_Wobj.mat'];
+Sfileout = [filepath fname '_Vobj.mat'];
 save([Sfileout],'S','-v7.3'); % save WORLD object
 synth = synth./max(1,max(abs(synth))*1.01); %normalize for writing to file
 synthfileout = [filepath fname '_Wsynth.wav'];
 %audiowrite(synthfileout,synth,fs_synth);% save resynthesized sound
 
 
+% Remove SAcC output file, as we don't use it
+SAcCfileout = [filepath fname 'SAcC.mat'];
+delete(SAcCfileout);
+
+
 figure;
 plot(S.f0_parameter.temporal_positions,S.f0_parameter.f0);grid on
 set(gca,'fontsize',14);
+set(gca,'Yscale','log')
 xlabel('time (s)')
 ylabel('Pitch (Hz)');
-title(['Pitch ' file])
+filenameNoUnderscores = file;
+filenameNoUnderscores(strfind(file,'_')) = ' ';
+title(['Pitch: ' filenameNoUnderscores])
 
