@@ -48,10 +48,9 @@ addpath('C:\Users\you\Voxit\WORLD');\
 addpath('C:\Users\you\Voxit\EllisPitchTracker');
 
 
-You're done setting up!  Now for each set of audio files you want to analyze:\
-i) Within Matlab, go to the directory containing the audio files, and run VoxitPrepWrapper, followed by
-	VoxitWrapper\
-ii) Enjoy the vocal analysis values in the output csv file!
+You're done setting up!  Now start Matlab, and for each set of audio files you want to analyze:\
+i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again.Be patient, this step will take longer than the next one. Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again.
+ii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.
 
 ___________________________________________________________________
 Acknowledgments:
