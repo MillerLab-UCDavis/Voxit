@@ -1,5 +1,5 @@
 # VOXIT: Vocal Analysis Tools
-Matlab functions to analyze vocal parameters, by Lee M. Miller (https://millerlab.faculty.ucdavis.edu/) in collaboration with Marit J. MacArthur and Robert Ochshorn (author of Gentle and Drift http://www.rmozone.com/).
+Functions to analyze vocal parameters in (mostly) Matlab, by Lee M. Miller (https://millerlab.faculty.ucdavis.edu/) in collaboration with Marit J. MacArthur and Robert Ochshorn (author of Gentle and Drift http://www.rmozone.com/).
 
 INSTRUCTIONS\
 Get started analyzing vocal recordings in a few easy steps:
