@@ -29,7 +29,7 @@ addpath('C:\Users\you\Voxit\Voxit');\
 addpath('C:\Users\you\Voxit\WORLD');\
 addpath('C:\Users\you\Voxit\EllisPitchTracker');\
 \
-At the Matlab command prompt >> , type *startup"* and enter, so Matlab learns the Voxit paths you just added (or just restart Matlab, which runs startup.m automatically).\
+At the Matlab command prompt >> , type *startup* and enter, so Matlab learns the Voxit paths you just added (or just restart Matlab, which runs startup.m automatically).\
 \
 Congratulations, you're done setting up!  
 
