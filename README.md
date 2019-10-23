@@ -14,22 +14,21 @@ The WORLD directory will be called something like world-0.2.1_4_matlab. Rename t
 3) Download the Matlab version of Dan Ellis' Subband Autocorrelation Classificiation (SAcC) pitch tracker.
 https://github.com/dpwe/SAcC \
 Unzip the download.
-If you get an error unzipping the "aux" folder, click "Skip" (Windows forbids directories with that name).
-If you don't get an error during unzipping, then DELETE the "aux" folder.
-Put this SAcC directory inside vour ~/Voxit directory along with WORLD, and  rename the SAcC folder "EllisPitchTracker"
+If you DO get an error unzipping the "aux" folder, click "Skip" (Windows forbids directories with that name). But if you DON'T get an error during unzipping, then simply DELETE the "aux" folder.\
+Put this SAcC directory inside vour ~/Voxit directory along with WORLD, and  rename the SAcC folder "EllisPitchTracker".\
 Also RENAME the function in EllisPitchTracker "audioread.m" to be something else, because it conflicts with a Matlab function.
 e.g. rename it to be "audioreadELLIS.m"
 
-4) Download from the Voxit repo the two directories:
-codeToReplaceInEllisPitchTracker
-Voxit
-Once again, put these in your ~/Voxit directory alongside your WORLD and EllisPitchTracker directories
+4) Download from the Voxit repo the two directories:\
+*codeToReplaceInEllisPitchTracker*\
+*Voxit*\
+Once again, put these in your ~/Voxit directory alongside your WORLD and EllisPitchTracker directories.
 
 5) From the Github directory codeToReplaceInEllisPitchTracker, update your EllisPitchTracker directory:
-REPLACE the three functions:
+REPLACE the three functions:\
 autocorrelogram.m\
 autocorrSAcC.m\
-SAcC_main.m
+SAcC_main.m\
 And MOVE the "waux" folder from your codeToReplaceInEllisPitchTracker download into the EllisPitchTracker directory.
 
 6) Compile the core SAaC pitch tracker function autocorr.c into a mex file:
@@ -43,8 +42,8 @@ If you have trouble, check your compiler in Matlab:\
 7) So far, Matlab may not know where to find your vocal analysis code. To avoid having to tell it every time you restart, you can add it to a startup.m file (saved anywhere on your default matlab path). At the command line, type\
   open startup.m\
 If you don't have one, use the Matlab editor to make one where Matlab will look for it e.g. in your matlab installation folder. https://www.mathworks.com/help/matlab/ref/startup.html \
-In startup.m, which is just a text file, simply add lines like this with path pointing to wherever you put your ~/Voxit folder: addpath('C:\Users\you\Voxit\Voxit');
-addpath('C:\Users\you\Voxit\WORLD');
+In startup.m, which is just a text file, simply add lines like this with path pointing to wherever you put your ~/Voxit folder:\ addpath('C:\Users\you\Voxit\Voxit');\
+addpath('C:\Users\you\Voxit\WORLD');\
 addpath('C:\Users\you\Voxit\EllisPitchTracker');
 
 
