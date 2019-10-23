@@ -12,7 +12,7 @@ http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html \
 The WORLD directory will be called something like world-0.2.1_4_matlab. Rename this to be "WORLD" and put this *inside* your ~/Voxit directory.
 
 3) Download the Matlab version of Dan Ellis' Subband Autocorrelation Classificiation (SAcC) pitch tracker.
-https://github.com/dpwe/SAcC\ 
+https://github.com/dpwe/SAcC \ 
 
 Unzip the download.
 If you get an error unzipping the "aux" folder, click "Skip" (Windows forbids directories with that name).
