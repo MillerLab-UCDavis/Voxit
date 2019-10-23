@@ -27,12 +27,12 @@ If you don't have one yet, use the Matlab editor to make one where Matlab will l
 In startup.m, which is just a text file, simply add lines like this with path pointing to your ~/Voxit folder:\
 addpath('C:\Users\you\Voxit\Voxit');\
 addpath('C:\Users\you\Voxit\WORLD');\
-addpath('C:\Users\you\Voxit\EllisPitchTracker');
-
+addpath('C:\Users\you\Voxit\EllisPitchTracker');\
+\
 At the Matlab command prompt >> , type *startup"* and enter, so Matlab learns the Voxit paths you just added (or just restart Matlab, which runs startup.m automatically).
 
 
-You're done setting up!  Now for each set of audio files you want to analyze:\
+<h4>You're done setting up!  Now for each set of audio files you want to analyze:</h4>\
 i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again.  
 ii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.
 
