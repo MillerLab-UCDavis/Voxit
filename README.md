@@ -1,5 +1,5 @@
 # VOXIT: Vocal Analysis Tools
-Functions to analyze vocal parameters in (mostly) Matlab, by Lee M. Miller (https://millerlab.faculty.ucdavis.edu/) in collaboration with Marit J. MacArthur and Robert Ochshorn (author of Gentle and Drift http://www.rmozone.com/).
+Functions to analyze vocal parameters in (mostly) Matlab, by Lee M. Miller (https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of Gentle and Drift http://www.rmozone.com/).
 
 INSTRUCTIONS\
 Get started analyzing vocal recordings in a few easy steps:
@@ -9,8 +9,8 @@ Get started analyzing vocal recordings in a few easy steps:
 2) Download Voxit by clicking the green "Clone or Download" button here on the Voxit Github page, and click "Download ZIP". Save in any convenient place and unzip it. When you unzip the file, you'll have a "Voxit-Master" directory with three directories within it:\
 EllisPitchTracker
 Voxit
-WORLD
-
+WORLD\
+\
 (Voxit is the part that we develop. [WORLD](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html) is Masanori Morise's wonderful speech analysis system, for Matlab (which follows on Hideki Kawahara's TANDEM-STRAIGHT). EllisPitchTracker is Dan Ellis' [Subband Autocorrelation Classificiation (SAcC) pitch tracker](https://github.com/dpwe/SAcC), gently modified to work with Voxit)\
 
 3) MOVE the three directories (Voxit, EllisPitchTracker, and WORLD) from Voxit-Master to the ~/Voxit directory you made in step 1.
