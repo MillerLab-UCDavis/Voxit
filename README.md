@@ -1,7 +1,7 @@
 # VOXIT: Vocal Analysis Tools
 Functions to analyze vocal parameters in Matlab, by Lee M. Miller (https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)).
 
-<h2>HOW TO SET UP VOXIT ON YOUR MACHINE</h2>
+<h2>How to Set Up VOXIT on your Machine</h2>
 Get started analyzing vocal recordings in a few easy steps:
 
 1) Make a local directory or folder to put the code, in any sensible place like C:\Users\you\Voxit, and and remember where it is. In the following instructions, we'll call this your ~/Voxit directory.
@@ -35,7 +35,7 @@ At the Matlab command prompt >> , type *startup* and enter, so Matlab learns the
 Congratulations, you're done setting up!  
 
 
-<h2>HOW TO USE VOXIT</h2>
+<h2>How to Use VOXIT</h2>
 <h2For each set of audio files you want to analyze:</h2>
 
 i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. You should now have _*Vobj.mat_ file for each of your audio files. This _*Vobj.mat_ file contains the WORLD analysis of the audio, with some other bits.\
