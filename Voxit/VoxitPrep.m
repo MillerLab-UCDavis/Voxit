@@ -212,7 +212,8 @@ S.source_parameter = rmfield(S.source_parameter,'f0_candidates');
 S.source_parameter = rmfield(S.source_parameter,'coarse_ap');
 
 if ~spectKeep
-    disp('After synthesis, replacing spectrogram with overall power to reduce memory load in later analyses. But this will limit some analyses or modifications!')
+    disp('After synthesis, replacing spectrogram with overall power to reduce memory load in later analyses.')
+    disp('But this will limit some analyses or modifications!')
     linPower = sum(S.spectrum_parameter.spectrogram./max(max(S.spectrum_parameter.spectrogram)))'; % scale to equalize across recordings
     S.spectrum_parameter.linPower = linPower;
     S.spectrum_parameter = rmfield(S.spectrum_parameter,'spectrogram')
