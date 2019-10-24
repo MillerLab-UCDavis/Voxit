@@ -61,7 +61,7 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
 
-The development of Voxit has been supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.
+**The development of Voxit has been generously supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.**
 
 <h2>LICENSES:</h2>
 The SAcC code is use with permission from Dan Ellis and respects the [BSD 2 Clause license](https://opensource.org/licenses/BSD-2-Clause/)
