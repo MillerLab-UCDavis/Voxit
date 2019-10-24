@@ -42,7 +42,7 @@ i) *Within Matlab*, navigate to the directory containing the audio files, and ty
 
 ii) Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again. Although you didn't notice, all your vocal analysis results are now appended in the _*Vobj.mat* file.
 
-iii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.
+iii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar. To help you understand and interpret the measures, see the articles below, under Acknowledgments.
 
 
 <h2>ADVANCED USERS</h2>
