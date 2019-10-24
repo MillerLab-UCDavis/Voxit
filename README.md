@@ -51,7 +51,8 @@ The default csv only contains a subset of the analyzed measures. For a complete 
 ___________________________________________________________________
 <h2>ACKNOWLEDGMENTS:</h2>
 When you cite Voxit -- and please do so -- include the articles:
-[MacArthur MJ, Zellou G, Miller LM (2018)](http://culturalanalytics.org/2018/04/beyond-poet-voice-sampling-the-non-performance-styles-of-100-american-poets/). Beyond Poet Voice: Sampling the (Non-) Performance Styles of 100 American Poets. Journal of Cultural Analytics DOI: 10.7910/DVN/OJI8NB. and our Stanford Arcade piece (https://arcade.stanford.edu/content/after-scansion-visualizing-deforming-and-listening-poetic-prosody/). These also give some background, motivation, and validation of the approach for those who want to learn more.\
+[MacArthur MJ, Zellou G, Miller LM (2018)](http://culturalanalytics.org/2018/04/beyond-poet-voice-sampling-the-non-performance-styles-of-100-american-poets/). Beyond Poet Voice: Sampling the (Non-) Performance Styles of 100 American Poets. Journal of Cultural Analytics DOI: 10.7910/DVN/OJI8NB. and our [Stanford Arcade piece](https://arcade.stanford.edu/content/after-scansion-visualizing-deforming-and-listening-poetic-prosody/). These also give some background, motivation, and validation of the approach for those who want to learn more.\
+\
 
 When you cite the Ellis SAaC algorithm --  and please do so --  include the article:
 Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classification”. in Interspeech. 2012. Portland. Minor changes were required for SAaC to work with Voxit, and these are noted in the code.
