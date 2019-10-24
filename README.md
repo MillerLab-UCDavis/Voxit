@@ -57,7 +57,7 @@ When you cite Voxit -- and please do so -- include the articles:
 When you cite the Ellis SAaC algorithm --  and please do so --  include the article:
 Lee, B.S. and D.P.W. Ellis. Noise robust pitch tracking by subband autocorrelation classification”. in Interspeech. 2012. Portland. Minor changes were required for SAaC to work with Voxit, and these are noted in the code.
 
-Please also cite WORLD. As per M. Morise's request on [Github](https://github.com/mmorise/World), please include the following:
+Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/World) on Github, please include the following:
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
 
