@@ -38,9 +38,9 @@ Congratulations, you're done setting up!
 <h2>How to Use VOXIT</h2>
 <h2For each set of audio files you want to analyze:</h2>
 
-i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. You should now have _*Vobj.mat_ file for each of your audio files. This _*Vobj.mat_ file contains the WORLD analysis of the audio, with some other bits.\
+i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. You should now have _*Vobj.mat_ file for each of your audio files. This _*Vobj.mat_ file contains the WORLD analysis of the audio, with some other bits.
 
-ii) Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again. Although you didn't notice, all your vocal analysis results are now appended in the _*Vobj.mat* file.\
+ii) Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again. Although you didn't notice, all your vocal analysis results are now appended in the _*Vobj.mat* file.
 
 iii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar.
 
