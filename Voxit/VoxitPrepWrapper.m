@@ -53,3 +53,6 @@ for f = 1:length(fileinAudio)
     end
 end
 
+% archive code
+mfileUsed = which('voxitPrep');
+[status,result]=system(['copy ' mfileUsed ' '  [filepath filesep 'voxitPrep_ARCHIVED.m']]);

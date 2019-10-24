@@ -60,9 +60,15 @@ end
 T.Properties.DimensionNames{1}='file';
 
 % Write table to comma-delimited text file
-writetable(T,'voxitResults.csv','WriteRowNames',true)
+p = pwd;
+ip = findstr(p,'\');
+localdir = p(ip(end)+1:end);
+resultsFile = ['voxitResults_' localdir '.csv'];
+writetable(T,resultsFile,'WriteRowNames',true)
 
-
+filepath = pwd;
+mfileUsed = which('voxitAnalysis');
+[status,result]=system(['copy ' mfileUsed ' '  [filepath filesep 'voxitAnalysis_ARCHIVED.m']]);
 
 %% Extra, to add if we pull in gentle file to the vocAnal
 %    %gentlefile = [gentleDir filein{f}(1:strfind(filein{f},'_Sobj')-1) 'gentle.csv']; %might use this in future   
