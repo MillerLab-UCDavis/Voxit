@@ -11,7 +11,7 @@ Get started analyzing vocal recordings in a few easy steps:
 -Voxit\
 -WORLD\
 \
-(Voxit is the part that we develop. [WORLD](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html) is Masanori Morise's wonderful speech analysis system, for Matlab (which follows on Hideki Kawahara's TANDEM-STRAIGHT). EllisPitchTracker is Dan Ellis' [Subband Autocorrelation Classificiation (SAcC) pitch tracker](https://github.com/dpwe/SAcC), gently modified to work with Voxit)
+(Voxit is the part that we develop. [WORLD](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/download.html) is Masanori Morise's wonderful speech analysis-synthesis system, for Matlab (which follows on Hideki Kawahara's TANDEM-STRAIGHT). EllisPitchTracker is Dan Ellis' [Subband Autocorrelation Classificiation (SAcC) pitch tracker](https://github.com/dpwe/SAcC), gently modified to work with Voxit)
 
 3) MOVE the three directories (Voxit, EllisPitchTracker, and WORLD) from Voxit-Master to the ~/Voxit directory you made in step 1.
 
