@@ -1,4 +1,4 @@
-function [S] = VoxitPrep(filepath,file,spectKeep,SAcCresynth)
+function [S] = voxitPrep(filepath,file,spectKeep,SAcCresynth)
 %% Voxit prep script for basic WORLD analysis and synthesis
 % Important bits modified from WORLDs exampleScriptForAnalysisAndSynthesis.m
 % INPUTS
@@ -12,7 +12,7 @@ function [S] = VoxitPrep(filepath,file,spectKeep,SAcCresynth)
 %   S           WORLD/Voxit structure
 %  
 % IF there exist output files from DRIFT and GENTLE with identical
-% filenames to the audio files, except with '-drift.csv' and '-gentle.csv', this
+% filenames to the audio files, except with '.drift.csv' and '.gentle.csv', this
 % function will also include their info in the output structure for later
 % analysis.
 % A Drift file's pitch values could also be used here to overwrite
@@ -100,8 +100,9 @@ S.SAcC.vuv = vuvtmp;
 %% If available, resample and include DRIFT pitch and vuv in S structure. Same as we did withSAcC
 % NOT CURRENTLY USING THIS FOR overwriting pitch values. Confirm match with SAcC
 [p1,fileroot,e1] = fileparts(file);
-driftfile = [fileroot '-drift.csv'];
+driftfile = [fileroot '.drift.csv'];
 if exist(driftfile,'file')
+    disp('Getting info from the associated drift file')
     [num,txt,raw] = xlsread(driftfile);
     [C,ia,ib] = intersect(tsacc,num(:,1));
     f0drift = zeros(size(psacc));
@@ -166,8 +167,9 @@ end
 
 
 %% Load Gentle data if available, for later analysis
-gentlefile = [fileroot '-gentle.csv'];
+gentlefile = [fileroot '.gentle.csv'];
 if exist(gentlefile,'file')
+    disp('Getting info from the associated gentle file')
     [Gnum,Gtxt,Graw]=xlsread(gentlefile);
     %Gtimes = Gnum(:,3:4); %assuming start and stop times of words are columns 3 and 4
     Gtimes = round(Gnum.*10000)./10000; %round to nearest 10th of a millisecond to avoid aberrant rounding errors in csv
