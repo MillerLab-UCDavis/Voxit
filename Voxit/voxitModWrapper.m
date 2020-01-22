@@ -15,14 +15,14 @@ end
 
 %% Name your STRAIGHT object files to work on
 %% by wildcard
-% lstruct=dir('./*Vobj.mat');
-% filein = {lstruct.name};
+lstruct=dir('./*Vobj.mat');
+filein = {lstruct.name};
 
 % or by name
 % filein = {'AprilIstheCruelestMonth_StrObj.mat','HillaryTrumpTemperament_StrObj.mat','GluckWildIrisItIsTerrible_StrObj.mat'...
 %       'MullenPresentTenseNowThatMyEars_StrObj.mat','RichToHaveYouListen_StrObj.mat',...
 %       'YeatsIWillArise_StrObj.mat'};
-filein = {'AprilIstheCruelestMonth_Vobj.mat'};
+%filein = {'AprilIstheCruelestMonth_Vobj.mat'};
 
 
 %% Choose your manipulation

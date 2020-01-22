@@ -21,8 +21,7 @@ disp('CONFIRM THAT WE STILL HAVE THE SPECTROGRAM AND APERIODICITY')
 %S= STRAIGHTobject;
 
 % get the pitch contour
-f0_original = S.AperiodicityStructure.f0; 
-
+f0_original = S.SAcC.f0;
 
 %IF desired, remove  very brief voiced periods (may help with noisy audio? maybe no diff at all)
 % vuvmin = 5; % duration of minimum voiced period, in samples (default 5ms period)
@@ -41,42 +40,42 @@ switch manipulation
         f0_new = f0_original*2;
 
     case 'flat';
-        ivuv = find(S.AperiodicityStructure.vuv>0); %only work with voiced portions
+        ivuv = find(S.analysis.vuv>0); %only work with voiced portions
         f0mean = 2.^(mean(log2(f0_original(ivuv)))); % log, as opposed to the linear f0mean = mean(f0_original(ivuv));
         f0_new = f0_original;
         f0_new(ivuv) = f0mean;
 
     case 'pitch2stress'
-        ivuv = find(S.AperiodicityStructure.vuv>0); %only work with voiced portions
+        ivuv = find(S.analysis.vuv>0); %only work with voiced portions
         f0mean = 2.^(mean(log2(f0_original(ivuv)))); % log, as opposed to the linear % f0mean = mean(f0_original(ivuv));
         f0_new = f0_original;
         diffoct = log2(f0_original) - log2(f0mean);
-        if length(S.AperiodicityStructure.vuv)~=length(S.SpectrumStructure.temporalPositions)
+        if length(S.analysis.vuv)~=length(S.f0_parameter.temporal_positions)
             error('Aperiodicity and Spectrum info are different lengths. Cannot combine them')
         end
-        stressfactor = zeros(1,length(S.SpectrumStructure.temporalPositions));
+        stressfactor = zeros(1,length(S.f0_parameter.temporal_positions));
         stressfactor(ivuv) = diffoct(ivuv)';
         modifiedPower = stressfactor; %?? as is, or scaled somehow?
-        logPower = 10*log10(sum(S.SpectrumStructure.spectrogramSTRAIGHT)); %this is how the manipulationulation GUI changes levels
+        logPower = 10*log10(sum(S.f0_parameter.temporal_positions)); %this is how the manipulationulation GUI changes levels
         powerModifier = 10.0.^((modifiedPower-logPower)/10);
       
         modifiedPower = min(-2,modifiedPower);
         disp('figure what the hell  modifiedPower means numerically in dB')
-        modifiedPower = repmat(modifiedPower,size(S.SpectrumStructure.spectrogramSTRAIGHT,1),1);
-        stressedSpectrogram = S.SpectrumStructure.spectrogramSTRAIGHT .* modifiedPower;
-        S.SpectrumStructure.spectrogramSTRAIGHT = stressedSpectrogram; 
+        modifiedPower = repmat(modifiedPower,size(S.f0_parameter.temporal_positions,1),1);
+        stressedSpectrogram = S.f0_parameter.temporal_positions .* modifiedPower;
+        S.f0_parameter.temporal_positions = stressedSpectrogram; 
         
   case 'stress2pitch'
         If0scalefactor = 1; % multiplier to map intensity changes onto pitch. Try between 1 and 2. ish.
         Iquantile = 0.5; % intensity quantile to change pitch at all (less intense sounds not changed in pitch)
-        ivuv = find(S.AperiodicityStructure.vuv>0); %only work with voiced portions
+        ivuv = find(S.analysis.vuv>0); %only work with voiced portions
         f0mean = 2.^(mean(log2(f0_original(ivuv)))); % log, as opposed to the linear % f0mean = mean(f0_original(ivuv));
         f0_new = f0_original;
         diffoct = log2(f0_original) - log2(f0mean);
-        if length(S.AperiodicityStructure.vuv)~=length(S.SpectrumStructure.temporalPositions)
+        if length(S.analysis.vuv)~=length(S.spectrum_parameter.temporal_positions)
             error('Aperiodicity and Spectrum info are different lengths. Cannot combine them')
         end;
-        logPower = 10*log10(sum(S.SpectrumStructure.spectrogramSTRAIGHT)); %this is how the manipulationulation GUI changes levels
+        logPower = 10*log10(sum(S.spectrum_parameter.temporal_positions)); %this is how the manipulationulation GUI changes levels
         powerModifier = zeros(size(diffoct));
         logPowerNormed = (logPower - quantile(logPower,Iquantile))./max(logPower) .* If0scalefactor; % first norm to select range
         logPowerNormed = max(logPowerNormed,0)'; % rectify, so only change pitch if loud enough in the first place
@@ -84,7 +83,7 @@ switch manipulation
         f0_new(ivuv) = modifiedPitch(ivuv);
         
     case 'flip';
-        ivuv = find(S.AperiodicityStructure.vuv>0); %only work with voiced portions
+        ivuv = find(S.analysis.vuv>0); %only work with voiced portions
         f0mean = 2.^(mean(log2(f0_original(ivuv)))); % log, as opposed to the linear % f0mean = mean(f0_original(ivuv));
         f0_new = f0_original;
         diffoct = log2(f0_original) - log2(f0mean);
@@ -92,7 +91,7 @@ switch manipulation
         f0_new = max(f0_new,50); %guard against negative values, lowest pitch 
 
     case 'fliplin'
-        ivuv = find(S.AperiodicityStructure.vuv>0); %only work with voiced portions
+        ivuv = find(S.analysis.vuv>0); %only work with voiced portions
         f0mean = mean(f0_original(ivuv)); 
         f0_new = f0_original;
         f0_new(ivuv) = -f0_original(ivuv)+2*f0mean;
@@ -102,26 +101,26 @@ switch manipulation
     case 'pitchNsize'
         f0_new = f0_original*2;  %make this an argin, or perhaps some plausible ratio of pitch and size manip
         
-        nFrames = length(S.SpectrumStructure.temporalPositions);
+        nFrames = length(S.f0_parameter.temporal_positions);
         sizeModifier = ones(nFrames,1).*0.8;  % make this an argin! <1 makes size smaller
-        baseFrequency = (0:size(S.SpectrumStructure.spectrogramSTRAIGHT,1)-1)/...
-            (size(S.SpectrumStructure.spectrogramSTRAIGHT,1)-1)/2*S.samplingFrequency;
+        baseFrequency = (0:size(S.spectrum_parameter.temporal_positions,1)-1)/...
+            (size(S.spectrum_parameter.temporal_positions,1)-1)/2*S.samplingFrequency;
         for ii = 1:nFrames
-            S.SpectrumStructure.spectrogramSTRAIGHT(:,ii) = interp1(baseFrequency,...
-                S.SpectrumStructure.spectrogramSTRAIGHT(:,ii),...
-                baseFrequency*sizeModifier(ii),'linear',S.SpectrumStructure.spectrogramSTRAIGHT(end,ii));
+            S.f0_parameter.temporal_positions(:,ii) = interp1(baseFrequency,...
+                S.f0_parameter.temporal_positions(:,ii),...
+                baseFrequency*sizeModifier(ii),'linear',S.f0_parameter.temporal_positions(end,ii));
         end;
     case 'MFM'
-        nFrames = length(S.SpectrumStructure.temporalPositions);
+        nFrames = length(S.f0_parameter.temporal_positions);
         f0modifier = linspace(1,2,nFrames)';
         f0_new = f0_original.*f0modifier;  %make this an argin, or perhaps some plausible ratio of pitch and size manip
         sizeModifier = linspace(1,0.8,nFrames);  % make this an argin! <1 makes size smaller
-        baseFrequency = (0:size(S.SpectrumStructure.spectrogramSTRAIGHT,1)-1)/...
-            (size(S.SpectrumStructure.spectrogramSTRAIGHT,1)-1)/2*S.samplingFrequency;
+        baseFrequency = (0:size(S.f0_parameter.temporal_positions,1)-1)/...
+            (size(S.f0_parameter.temporal_positions,1)-1)/2*S.samplingFrequency;
         for ii = 1:nFrames
-            S.SpectrumStructure.spectrogramSTRAIGHT(:,ii) = interp1(baseFrequency,...
-                S.SpectrumStructure.spectrogramSTRAIGHT(:,ii),...
-                baseFrequency*sizeModifier(ii),'linear',S.SpectrumStructure.spectrogramSTRAIGHT(end,ii));
+            S.f0_parameter.temporal_positions(:,ii) = interp1(baseFrequency,...
+                S.f0_parameter.temporal_positions(:,ii),...
+                baseFrequency*sizeModifier(ii),'linear',S.f0_parameter.temporal_positions(end,ii));
         end; 
         
         
@@ -139,12 +138,24 @@ dslope = .2;
 f0_new(find(f0_new<f0low)) = f0_new(find(f0_new<f0low)) + dslope*(f0low-f0_new(find(f0_new<f0low)));
 f0_new(find(f0_new>f0high)) = f0_new(find(f0_new>f0high)) + dslope*(f0_new(find(f0_new>f0high))-f0high);
 
-% make a copy of the Straight object and replace that pitch field
+% make a copy of the World object and replace that pitch field
 S_new = S;
-S_new.AperiodicityStructure.f0 = f0_new;
+S_new.f0_parameter.f0 = f0_new;
+S_new.source_parameter.f0 = f0_new;
 
 % Resythesize the new sound
-newsoundStruct = exGeneralSTRAIGHTsynthesisR2(S_new.AperiodicityStructure,S_new.SpectrumStructure);
+%newsoundStruct = exGeneralSTRAIGHTsynthesisR2(S_new.AperiodicityStructure,S_new.SpectrumStructure);
+%% (Re)Synthesize and Save WORLD object
+disp('(Re)Synthesizing and saving WORLD/Voxit object')
+
+synth = Synthesis(S_new.source_parameter, S_new.spectrum_parameter);
+fs_synth = S.samplingFrequency;
+[filepathstr,fname,fext] = fileparts(fileinname);
+
+    fname = [fname '_SAcC'];
+
+ S_new.synthesisOut = synth;
+
 
 % write the old sound
 % origsound = S.waveform;
@@ -161,7 +172,7 @@ newsoundStruct = exGeneralSTRAIGHTsynthesisR2(S_new.AperiodicityStructure,S_new.
 % audiowrite(origsoundfile,origsound,fs);
 
 % write new sound
-newsound = newsoundStruct.synthesisOut;
+newsound = S_new.synthesisOut;
 if exist('rmsnorm','var')
     newsound = newsound./(rms(newsound)/rmsnorm);
 end
@@ -178,13 +189,13 @@ disp('SAVE MODULATION PARAMETERS IN Vobj S.mod.filename ')
 
 % Oh, for plotting you just want to change unvoiced f0 values to nan's 
 figure, hold on, xlabel('Time (s)'), ylabel('Pitch (Hz)')
-t=S.AperiodicityStructure.temporalPositions; % time axis
+t=S.source_parameter.temporal_positions; % time axis
 f0_original_plot = f0_original;
-f0_original_plot(S.AperiodicityStructure.vuv==0) = nan;
+f0_original_plot(S.analysis.vuv==0) = nan;
 plot(t,f0_original_plot,'Linewidth',1.5,'color','b') % blue
 
 f0_newplot = f0_new;
-f0_newplot(S_new.AperiodicityStructure.vuv==0) = nan;
+f0_newplot(S.analysis.vuv==0) = nan;
 plot(t,f0_newplot,'Linewidth',1.5,'color','r') % red
 
 title(filein)
