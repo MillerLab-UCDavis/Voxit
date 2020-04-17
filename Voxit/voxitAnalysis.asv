@@ -66,9 +66,7 @@ f0velocity = [];
 f0accel = [];
 for i = 1:size(ixvoicedbounds,1)  %the loop makes sure we're not calculating across segments
     diffocttmp = diffoctf0(ixvoicedbounds(i,1):ixvoicedbounds(i,2));
-    %diffocttmp = smooth(diffocttmp,9,'sgolay'); %smooth f0, if desired. But must adjust SPAN to a reasonabl time (default = 5 samples) and maybe trim ends?)
-                                                % and do the same for Driftf0 below, and maybe save a full-length smoothed sequence for reference/plotting
-                                        
+    %diffocttmp = smooth(diffocttmp,'sgolay'); %smooth f0, if desired. But must adjust SPAN to a reasonabl time (default = 5 samples) and maybe trim ends?)
     f0velocity = [f0velocity; diff(diffocttmp)/ts]; %norm by sampling period, so in octaves per sec
     f0accel = [f0accel; diff(diff(diffocttmp))/ts]; %in octaves per sec per sec
     
