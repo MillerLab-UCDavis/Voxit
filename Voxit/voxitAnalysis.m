@@ -66,8 +66,7 @@ f0velocity = [];
 f0accel = [];
 for i = 1:size(ixvoicedbounds,1)  %the loop makes sure we're not calculating across segments
     diffocttmp = diffoctf0(ixvoicedbounds(i,1):ixvoicedbounds(i,2));
-    %diffocttmp = smooth(diffocttmp,9,'sgolay'); %smooth f0, if desired. But must adjust SPAN to a reasonabl time (default = 5 samples) and maybe trim ends?)
-                                                % and do the same for Driftf0 below, and maybe save a full-length smoothed sequence for reference/plotting
+    diffocttmp = smooth(diffocttmp,7,'sgolay',2); %smooth f0 to avoid step artifacts, esp in acceleration: span = 7, degree = 2 as per Drift3
                                         
     f0velocity = [f0velocity; diff(diffocttmp)/ts]; %norm by sampling period, so in octaves per sec
     f0accel = [f0accel; diff(diff(diffocttmp))/ts]; %in octaves per sec per sec
@@ -191,9 +190,7 @@ if isfield(S,'drift')  % keep in mind the drift data is probably 10ms sampling p
     f0accelD = [];
     for i = 1:size(ixvoicedboundsD,1)  %the loop makes sure we're not calculating across segments
         diffocttmpD = diffoctf0D(ixvoicedboundsD(i,1):ixvoicedboundsD(i,2));
-    %     smoothvel = smooth(diff(diffocttmp),'sgolay');
-    %     f0velocity = [f0velocity; smoothvel/ts]; %norm by sampling period, so in octaves per sec
-    %     f0accel = [f0accel; diff(smoothvel)/ts]; %in octaves per sec per sec
+        diffocttmpD = smooth(diffocttmp,7,'sgolay',2); %smooth f0 to avoid step artifacts, esp in acceleration: span = 7, degree = 2 as per Drift3
         f0velocityD = [f0velocityD; diff(diffocttmpD)/tsD]; %norm by sampling period, so in octaves per sec
         f0accelD = [f0accelD; diff(diff(diffocttmpD))/tsD]; %in octaves per sec per sec
     end
