@@ -142,6 +142,7 @@ end
 
 %%
 
+S.analysis.t = S.f0_parameter.temporal_positions;
 S.analysis.f0 = S.SAcC.f0;
 S.analysis.f0Mean = f0mean;
 S.analysis.f0Range = max(diffoctf0(ivuv))-min(diffoctf0(ivuv));
@@ -190,11 +191,12 @@ if isfield(S,'drift')  % keep in mind the drift data is probably 10ms sampling p
     f0accelD = [];
     for i = 1:size(ixvoicedboundsD,1)  %the loop makes sure we're not calculating across segments
         diffocttmpD = diffoctf0D(ixvoicedboundsD(i,1):ixvoicedboundsD(i,2));
-        diffocttmpD = smooth(diffocttmp,7,'sgolay',2); %smooth f0 to avoid step artifacts, esp in acceleration: span = 7, degree = 2 as per Drift3
+        diffocttmpD = smooth(diffocttmpD,7,'sgolay',2); %smooth f0 to avoid step artifacts, esp in acceleration: span = 7, degree = 2 as per Drift3
         f0velocityD = [f0velocityD; diff(diffocttmpD)/tsD]; %norm by sampling period, so in octaves per sec
         f0accelD = [f0accelD; diff(diff(diffocttmpD))/tsD]; %in octaves per sec per sec
     end
     
+    S.analysis.Driftt = S.drift.tdrift;
     S.analysis.Driftf0 = S.drift.f0drift;
     S.analysis.Driftf0Mean = f0meanD;
     S.analysis.Driftf0Range = max(diffoctf0D(ivuvD))-min(diffoctf0D(ivuvD));
