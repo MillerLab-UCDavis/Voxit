@@ -98,7 +98,7 @@ S.SAcC.f0 = f0tmp;
 S.SAcC.vuv = vuvtmp; 
 
 %% If available, resample and include DRIFT pitch and vuv in S structure. Same as we did withSAcC
-% NOT CURRENTLY USING THIS FOR overwriting pitch values. Confirm match with SAcC
+% NOT CURRENTLY USING THIS FOR overwriting pitch values - only to confirm match with SAcC
 [p1,fileroot,e1] = fileparts(file);
 driftfile = [fileroot '.drift.csv'];
 if exist(driftfile,'file')
