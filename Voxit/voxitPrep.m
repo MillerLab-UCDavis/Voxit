@@ -233,14 +233,15 @@ synthfileout = [filepath fname '_Wsynth.wav'];
 SAcCfileout = [filepath fname 'SAcC.mat'];
 delete(SAcCfileout);
 
-
-figure;
-plot(S.f0_parameter.temporal_positions,S.f0_parameter.f0);grid on
-set(gca,'fontsize',14);
-set(gca,'Yscale','log')
-xlabel('time (s)')
-ylabel('Pitch (Hz)');
-filenameNoUnderscores = file;
-filenameNoUnderscores(strfind(file,'_')) = ' ';
-title(['Pitch: ' filenameNoUnderscores])
+% %Plot Pitch time series. This is only useful for debugging, as the SAaC
+% %function already plots its estimates
+% figure;
+% plot(S.f0_parameter.temporal_positions,S.f0_parameter.f0);grid on
+% set(gca,'fontsize',14);
+% set(gca,'Yscale','log')
+% xlabel('time (s)')
+% ylabel('Pitch (Hz)');
+% filenameNoUnderscores = file;
+% filenameNoUnderscores(strfind(file,'_')) = ' ';
+% title(['Pitch: ' filenameNoUnderscores])
 
