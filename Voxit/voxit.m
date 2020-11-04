@@ -1,22 +1,20 @@
-function []=voxit(datadir)
+function []=voxit
 % Launcher for all of Voxit (both the prep and analysis). Necessary to
 % package a single standalone version.
 %
 % INPUTS
-%    datadir:  directory name with sound files to be analyzed.
-%              May be relative or absolute path. Default: pwd
+%  (none)
 %
 % OUTPUTS
 % (none)
 %
 % copyright Lee M. Miller, latest mods 10/2020
 
-if ~exist('datadir','var')
-    datadir = pwd;
-end
+% open gui for user to specify path
+selpath = uigetdir
 
 % Change directory to the data directory, with the sound files
-cd(datadir);
+cd(selpath);
 
 % Run the WORLD voxit prep function
 voxitPrepWrapper;
