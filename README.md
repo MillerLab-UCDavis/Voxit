@@ -2,7 +2,7 @@
 Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.
 
 <h2>How to Set Up Standalone VOXIT (without Matlab) on your Machine</h2>
-Whether or not you have Matlab, you can install and use Voxit on your machine, no matter the OS: Windows, Mac, or Linux! Note that you may need administrative rights to install and/or run it (e.g. on Windows 10, "Run as administrator", or on Mac/Linux, "sudo"). 
+Whether or not you have Matlab, you can install and use Voxit on your machine! For now, it works on Windows, but soon on Mac or Linux as well. Note that you may need administrative rights to install and/or run it (e.g. on Windows 10, "Run as administrator", or on Mac/Linux, "sudo"). 
 
 1) From the repo ./Voxit folder, download the latest version of the VoxitStandaloneInstaller_.exe file. 
 
