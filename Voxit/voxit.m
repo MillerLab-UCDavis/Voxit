@@ -16,8 +16,20 @@ selpath = uigetdir
 % Change directory to the data directory, with the sound files
 cd(selpath);
 
-% Run the WORLD voxit prep function
-voxitPrepWrapper;
+diary % This statement and the entire try/catch block
+                        % for debugging: to write all output to logfile 
+                        % even in event of a crash.
+try
+    
+    % Run the WORLD voxit prep function
+    voxitPrepWrapper;
 
-% Run the voxit analysis
-voxitAnalysisWrapper;
+    % Run the voxit analysis
+    voxitAnalysisWrapper;
+
+catch ME
+  fprintf(1, 'ERROR:\n%s\n', ME.message);
+end
+diary off
+
+disp("Done!")
