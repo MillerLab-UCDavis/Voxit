@@ -10,8 +10,9 @@ Whether or not you have Matlab, you can install and use Voxit on your machine, n
 
 3) Run Voxit, which pops up a window for you to choose the directory with your audio files. (This step may take a few minutes the first time you do it in a session, as the Matlab Runtime needs to start in the background... be patient). Pick a directory and wait for the magic to happen...  
 
-4) Open the new .csv file with the analysis values for every audio file. You can also view the pitch and other raw data used for the analyses in the * Data.csv files.
-Finally, Voxit also saves Vobj.mat files with ALL the analysis values, as well as the pitch estimates and much MUCH more, for further exploration within Matlab (if you obtain a license) or possibly in the free program [Octave](https://www.gnu.org/software/octave/index).
+4) Open the new voxitResults * .csv file with the analysis values for every audio file. 
+You can also view the pitch estimates and other raw data used for analysis in each * DataArray.csv file.
+Finally, Voxit also saves Vobj.mat files with ALL the analysis values, as well as the pitch estimates and much MUCH more, for further exploration within Matlab (if you obtain a license) or  in the free program [Octave](https://www.gnu.org/software/octave/index).
 
 
 <h2>How to Set Up VOXIT IN MATLAB on your Machine</h2>
