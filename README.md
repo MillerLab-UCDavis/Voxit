@@ -15,7 +15,7 @@ Whether or not you have Matlab, you can install and use Voxit on your machine, n
 You can also view the pitch estimates and other raw data used for analysis in each * DataArray.csv file.\
 \
 Finally, Voxit also saves Vobj.mat files with ALL the analysis values, as well as the pitch estimates and much MUCH more, for further exploration within Matlab (if you obtain a license) or  in the free program [Octave](https://www.gnu.org/software/octave/index).\
-\
+
 
 <h2>How to Set Up VOXIT IN MATLAB on your Machine</h2>
 If you have a Matlab license and want access to all the code, you can get started in a few easy steps:
