@@ -1,8 +1,20 @@
 # VOXIT: Vocal Analysis Tools
-Matlab functions for automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)).
+Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.
 
-<h2>How to Set Up VOXIT on your Machine</h2>
-Get started analyzing vocal recordings in a few easy steps:
+<h2>How to Set Up Standalone VOXIT (without Matlab) on your Machine</h2>
+Whether or not you have Matlab, you can install and use Voxit on your machine, no matter the OS: Windows, Mac, or Linux! Note that you may need administrative rights to install and/or run it (e.g. on Windows 10, "Run as administrator", or on Mac/Linux, "sudo"). 
+
+1) In the repo ./Voxit folder, download the latest version of the VoxitStandaloneInstaller_.exe file. 
+
+2) Run the installer file, and proceed through the popups accepting all defaults (except on Windows you sould have the option to create a desktop shortcut). This step may take awhile because it needs to download the Matlab Runtime Environment - the piece of Matlab that allows you to run Voxit without a Matlab license  [legally!](https://www.mathworks.com/products/compiler/matlab-runtime.html)).
+
+3) Run Voxit, which pops up a window for you to choose the directory with your audio files. (This step may take a minute the first time you do it in a session, as the Matlab Runtime needs to start in the background). Pick a directory and wait for the magic to happen...  
+
+4) Open the new .csv file with the analysis values for every audio file.
+
+
+<h2>How to Set Up VOXIT IN MATLAB on your Machine</h2>
+If you have a Matlab license and want access to all the code, you can get started in a few easy steps:
 
 1) Make a local directory or folder to put the code, in any sensible place like C:\Users\you\Voxit, and and remember where it is. In the following instructions, we'll call this your ~/Voxit directory.
 
