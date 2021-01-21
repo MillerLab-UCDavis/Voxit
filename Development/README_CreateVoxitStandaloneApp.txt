@@ -10,7 +10,7 @@ https://www.mathworks.com/help/compiler/create-and-install-a-standalone-applicat
 * put your entire matlab startup.m script within a conditional: if ~isdeployed ... end, to avoid compiling paths that don't exist on client
 * Start applicationCompiler from the command line
 * In MAIN FILE, choose your voxit.m. The “Files required..” pane below should populate with dependencies.
-* ensure Radio button “Runtime downloaded from Web” is selected, and type “VoxitInstaller” in the text field
+* ensure Radio button “Runtime downloaded from Web” is selected, and type “VoxitInstaller_v1.0” in the text field, replacing version number with whatever you put below in Application information
 * in Settings, choose folders to save the output. You can leave the default logfile and folder names but just choose your desired local path
 * Under Application Information
 	* fill out what you like, including version
@@ -26,4 +26,8 @@ https://www.mathworks.com/help/compiler/create-and-install-a-standalone-applicat
 	* for Windows, uncheck “Do not display the Windows Command Shell…”
 	* (optional) check Create log file, and call it something like “VoxitLog.txt”, as this might help debugging
 
+* In the upper right, click Package
+	* you should now find the installer executable in the folder you designated in Settings, /for_redistribution
+* In the upper left, click Save and save the project anywhere sensible
+* Run the executable to install Voxit!
 
