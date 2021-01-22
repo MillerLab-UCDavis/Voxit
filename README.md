@@ -1,5 +1,7 @@
 # VOXIT: Vocal Analysis Tools
-Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.
+Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.\
+\
+Please, PLEASE let us know if you are using Voxit -- this will help us continue the project! Just add your name and affiliation in the Discussion (see button above) entitled "Voxit users: please add your name!"
 
 <h2>How to Set Up Standalone VOXIT (without Matlab) on your Machine</h2>
 Whether or not you have Matlab, you can install and use Voxit on your machine! For now, it works on Windows, but soon on Mac or Linux as well. Note that you may need administrative rights to install and/or run it (e.g. on Windows 10, "Run as administrator", or on Mac/Linux, "sudo"). 
@@ -77,7 +79,7 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413<br/>
 <br/>
 
-**The development of Voxit has been generously supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.  Please, PLEASE let us know if you are using Voxit for your research -- this will help us continue the project! Just add your name and affiliation in the Discussion (see button above) entitled "Voxit users: please add your name!"**
+**The development of Voxit has been generously supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.**
 
 <h2>LICENSES:</h2>
 The SAcC code is use with permission from Dan Ellis and respects the [BSD 2 Clause license](https://opensource.org/licenses/BSD-2-Clause/)
