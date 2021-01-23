@@ -10,7 +10,7 @@ function [T] = voxitAnalysisWrapper(fileinVobj)
 %                '01_GuestB_Wobj.mat'};% Find all WORLD object files
 % OR by default, find all of them
 if ~exist('fileinVobj','var')
-   lstruct=dir('./*_Vobj.mat');
+   lstruct=dir(['.' filesep '*_Vobj.mat']);
    fileinVobj = {lstruct.name};
 end
 
@@ -55,20 +55,20 @@ for f = 1:length(fileinVobj)
        T = [T; Tnew];
    end
    
-   if isdeployed        % Write pitch and speech/ no speech data to comma-delimited text file
+   %if isdeployed        % Write pitch and speech vs no speech data to comma-delimited text file
        DataArray = array2table([S.analysis.t' S.analysis.f0 S.analysis.sps],'VariableNames',{'time_s','pitch_hz', 'speech_no_speech'}); 
        [dummy1,fname,dummy2] = fileparts(fileinVobj{f});
        i = strfind(fname,'_Vobj');
        DataFile = [fname(1:i-1) '_DataArray.csv'];
        writetable(DataArray,DataFile);
-   end
+   %end
 end
 
 T.Properties.DimensionNames{1}='file';
 
 % Write table to comma-delimited text file
 p = pwd;
-ip = findstr(p,'\');
+ip = findstr(p,filesep);
 localdir = p(ip(end)+1:end);
 resultsFile = ['voxitResults_' localdir '.csv'];
 writetable(T,resultsFile,'WriteRowNames',true)

@@ -25,12 +25,12 @@ filepath = pwd;
 %            '01_GuestB.wav'};
 % OR, by default work on all audio files in present directory
 if ~exist('fileinAudio','var')
-   wavfilestruct = dir('./*.wav');
-   mp3filestruct = dir('./*.mp3');
-   m4afilestruct = dir('./*.m4a');
-   mp4filestruct = dir('./*.mp4');
-   flacfilestruct = dir('./*.flac');
-   oggfilestruct = dir('./*.ogg');
+   wavfilestruct = dir(['.' filesep '*.wav']);
+   mp3filestruct = dir(['.' filesep '*.mp3']);
+   m4afilestruct = dir(['.' filesep '*.m4a']);
+   mp4filestruct = dir(['.' filesep '*.mp4']);
+   flacfilestruct = dir(['.' filesep '*.flac']);
+   oggfilestruct = dir(['.' filesep '*.ogg']);
    allfilestruct = [wavfilestruct; mp3filestruct; m4afilestruct; mp4filestruct; flacfilestruct; oggfilestruct];
    fileinAudio = {allfilestruct.name};
 end
@@ -47,7 +47,7 @@ for f = 1:length(fileinAudio)
             
     [dummy1,fname,dummy2] = fileparts(fileinAudio{f});
     Sfile = [fname '_Vobj.mat'];
-    if overwrite == 1 | ~exist(['./' Sfile],'file')
+    if overwrite == 1 | ~exist(['.' filesep Sfile],'file')
         disp(['Converting ' fileinAudio{f} ' audio to Voxit object']);
         voxitPrep(filepath,fileinAudio{f},spectKeep);
     end
