@@ -47,13 +47,15 @@ Congratulations, you're done setting up! Now see below "How to use VOXIT".
 
 
 <h2>How to Use VOXIT</h2>
-IF you're in Matlab, at the command prompt, enter "voxit":\
-or\
-IF you're using the standalone app: in Windows, simply double-click on the Voxit.exe file to open the folder browser, then:\
-\
-i) Navigate to the directory containing the audio files, and accept.  Be patient, as it can take a long time to analyze the audio files, especially long ones.\
-\
-ii) There should now be an output *voxitResults*.csv file in the audio file directory with all your analysis results! View it with Excel or similar. You can also view the pitch estimates and other raw data used for analysis in each audio file's * DataArray.csv file (for instance you can average all the pitch values in a time range, ignoring zeros, with =AVERAGEIF(B200:B500,"<>0"). To help you understand and interpret the measures, see the articles below, under Acknowledgments.
+IF you're in Matlab, at the command prompt, enter "voxit":  
+
+or  
+IF you're using the standalone app: in Windows, simply double-click on the Voxit.exe file to open the folder browser, then:  
+
+  
+i) Navigate to the directory containing the audio files, and accept.  Be patient, as it can take a long time to analyze the audio files, especially long ones.  
+  
+ii) There should now be an output *voxitResults*.csv file in the audio file directory with all your analysis results! View it with Excel or similar. You can also view the pitch estimates and other raw data used for analysis in each audio file's * DataArray.csv file (for instance you can average all the pitch values in a time range, ignoring zeros, with Excel's =AVERAGEIF(B200:B500,"<>0")). To help you understand and interpret the measures, see the articles below, under Acknowledgments.
 
 
 <h2>ADVANCED USERS</h2>
