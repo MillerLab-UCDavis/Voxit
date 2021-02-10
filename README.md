@@ -1,5 +1,7 @@
 # VOXIT: Vocal Analysis Tools
-Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.
+Automated analysis of vocal parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.\
+\
+Please, PLEASE let us know if you are using Voxit -- this will help us continue the project! Just add your name and affiliation in the Discussion (see button above) entitled "Voxit users: please add your name!"
 
 <h2>How to Set Up Standalone VOXIT (without Matlab) on your Machine</h2>
 Whether or not you have Matlab, you can install and use Voxit on your machine! For now, it works on Windows, but soon on Mac or Linux as well. Note that you may need administrative rights to install and/or run it (e.g. on Windows 10, "Run as administrator", or on Mac/Linux, "sudo"). 
@@ -8,14 +10,7 @@ Whether or not you have Matlab, you can install and use Voxit on your machine! F
 
 2) Run the installer file, and proceed through the popups accepting all defaults (except on Windows you sould have the option to create a desktop shortcut). This step may take awhile because it needs to download the Matlab Runtime Environment - the piece of Matlab that allows you to run Voxit without a Matlab license  [legally!](https://www.mathworks.com/products/compiler/matlab-runtime.html)).
 
-3) Run Voxit, which pops up a window for you to choose the directory with your audio files. (This step may take a few minutes the first time you do it in a session, as the Matlab Runtime needs to start in the background... be patient). Pick a directory and wait for the magic to happen...  
-
-4) Open the new voxitResults * .csv file with the analysis values for every audio file.\
-\
-You can also view the pitch estimates and other raw data used for analysis in each * DataArray.csv file.\
-\
-Finally, Voxit also saves Vobj.mat files with ALL the analysis values, as well as the pitch estimates and much MUCH more, for further exploration within Matlab (if you obtain a license) or  in the free program [Octave](https://www.gnu.org/software/octave/index).
-
+That's it! Now skip below to "How to use Voxit".
 
 <h2>How to Set Up VOXIT IN MATLAB on your Machine</h2>
 If you have a Matlab license and want access to all the code, you can get started in a few easy steps:
@@ -48,21 +43,23 @@ addpath('C:\Users\you\Voxit\EllisPitchTracker');\
 \
 At the Matlab command prompt >> , type *startup* and enter, so Matlab learns the Voxit paths you just added (or just restart Matlab, which runs startup.m automatically).\
 \
-Congratulations, you're done setting up!  
+Congratulations, you're done setting up! Now see below "How to use VOXIT".
 
 
 <h2>How to Use VOXIT</h2>
-<h2For each set of audio files you want to analyze:</h2>
+IF you're in Matlab, at the command prompt, enter "voxit":  
 
-i) *Within Matlab*, navigate to the directory containing the audio files, and type *voxitPrepWrapper*, at the >> command prompt, then Enter. Wait until it's finished and you see the >> prompt again. Be patient, this step will take longer than the next one. You should now have _*Vobj.mat_ file for each of your audio files. This _*Vobj.mat_ file contains the WORLD analysis of the audio, with some other bits.
+or  
+IF you're using the standalone app: in Windows, simply double-click on the Voxit.exe file to open the folder browser, then:  
 
-ii) Then enter *voxitAnalysisWrapper* and wait until it's done, and you see the >> prompt again. Although you didn't notice, all your vocal analysis results are now appended in the _*Vobj.mat* file.
-
-iii) There should now be an output csv file in the audio file directory, with all your analysis results! View it with Excel or similar. To help you understand and interpret the measures, see the articles below, under Acknowledgments.
+  
+i) Navigate to the directory containing the audio files, and accept.  Be patient, as it can take a long time to analyze the audio files, especially long ones.  
+  
+ii) There should now be an output *voxitResults*.csv file in the audio file directory with all your analysis results! View it with Excel or similar. You can also view the pitch estimates and other raw data used for analysis in each audio file's * DataArray.csv file (for instance you can average all the pitch values in a time range, ignoring zeros, with Excel's =AVERAGEIF(B200:B500,"<>0")). To help you understand and interpret the measures, see the articles below, under Acknowledgments.
 
 
 <h2>ADVANCED USERS</h2>
-The default csv only contains a subset of the analyzed measures. For a complete list, load the Vobj.mat file and list the structure fields in *S.analysis*. You can add any of these measures to the csv output (provided they are scalar values) by going into voxitAnalysisWrapper and editing the variable *measureNames* with your desired field names.
+Voxit works in two steps, first *voxitPrepWrapper* which creates the _*Vobj.mat_ files that contain the WORLD output, and then *voxitAnalysisWrapper* which calculates and appends the vocal analysis values to it. The default csv only contains a subset of the analyzed measures. For a complete list, load the Vobj.mat file and list the structure fields in *S.analysis*. You can add any of these measures to the csv output (provided they are scalar values) by going into voxitAnalysisWrapper and editing the variable *measureNames* with your desired field names.
 
 ___________________________________________________________________
 <h2>ACKNOWLEDGMENTS:</h2>
