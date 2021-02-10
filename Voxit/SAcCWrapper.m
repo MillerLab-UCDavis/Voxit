@@ -12,8 +12,10 @@ else
 end
 whichCellEntry = find(cellfun(@(dirs) ~isempty( strfind(dirs, strToFind) ), dirs) == 1);% Index to cell entries containing the desired string
 if length(whichCellEntry)>1
-    warning('More than one EllisPitchTracker directory on your path. Taking the first, presumed top level.')
-    whichCellEntry = whichCellEntry(1);
+    %warning('More than one EllisPitchTracker directory on your path. Taking the shortest path, presumed top level.')
+    L = cellfun(@length,dirs(whichCellEntry));
+    iLmin = find(L == min(L));
+    whichCellEntry = whichCellEntry(iLmin);
 end
 SAaCpath = [dirs{whichCellEntry}  filesep];
 %addpath(SAaCpath);
