@@ -23,7 +23,7 @@ SAaCpath = [dirs{whichCellEntry}  filesep];
 [fpath,fn,fext] = fileparts(filename);
 out_file = [fpath filesep fn 'SAcC.mat'];
 
-config_file = [SAaCpath filesep 'conf' filesep 'rats_sr8k_bpo6_sb24_k10.config'];
+config_file = [SAaCpath 'conf' filesep 'rats_sr8k_bpo6_sb24_k10.config'];
 [P,D] = config_read_srs(config_file);
 P = config_default(P); % note this is just getting remaining defaults for 2012 code not 2013 SAcC update. See end of script for all the new defaults
 
