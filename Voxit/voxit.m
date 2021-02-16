@@ -9,13 +9,13 @@ function []=voxit
 % (none)
 %
 % copyright Lee M. Miller, latest mods 10/2020
-%if isdeployed
+if isdeployed
     set(0,'DefaultUicontrolFontName','Arial'); %for cross-platform compatibility, these apply only during this matlab session
     set(0,'defaultUipanelFontName','Arial');
     set(0,'DefaultUitableFontName','Arial');
     set(0,'defaultAxesFontName','Arial');
     set(0,'defaultTextFontName','Arial');
-%end
+end
 
 % open gui for user to specify path
 selpath = uigetdir
