@@ -9,22 +9,23 @@ INSTRUCTIONS
 https://www.mathworks.com/help/compiler/create-and-install-a-standalone-application-from-matlab-code.html
 * put your entire matlab startup.m script within a conditional: if ~isdeployed ... end, to avoid compiling paths that don't exist on client
 * Start applicationCompiler from the command line
-* In MAIN FILE, choose your voxit.m. The ìFiles required..î pane below should populate with dependencies.
-* ensure Radio button ìRuntime downloaded from Webî is selected, and type ìVoxitInstaller_v1.0î in the text field, replacing version number with whatever you put below in Application information
+* In MAIN FILE, choose your voxit.m. The ‚ÄúFiles required..‚Äù pane below should populate with dependencies.
+* ensure Radio button ‚ÄúRuntime downloaded from Web‚Äù is selected, and type ‚ÄúVoxitInstaller_v1.0‚Äù in the text field, replacing version number with whatever you put below in Application information
 * in Settings, choose folders to save the output. You can leave the default logfile and folder names but just choose your desired local path
 * Under Application Information
-	* fill out what you like, including version
+	* fill out "Voxit" in the first line, including version, and whatever else you like below
+	* just to the left of your "Voxit" (first line), click on the icon; click "Select icon", choose "VoxitIcon1.jpg" from your voxit repo /Development folder, then click "Save and use"
 	* set custom splash screen, and insert VoxitSplashScreen1.jpg from your voxit repo /Development folder
 * Under Additional installer options, Select custom logo and insert VoxitLogo1.jpg from your voxit repo /Development folder
-* In the ìFiles required for your application to run, add the following:
+* In the ‚ÄúFiles required for your application to run, add the following:
 	* \EllisPitchTracker\waux\pca_sr8k_bpo6_sb24_k10.mat
 	* \EllisPitchTracker\waux\py_pitch_candidates_freqz.txt
 	* \EllisPitchTracker\waux\py_sub_qtr_rats_keele_sr8k_bpo6_sb24_k10_ep5_h100.wgt
 	* \EllisPitchTracker\waux\py_tr_keele_rbf_pinknoise_sr8000_bpo6_nchs24_k10.norms
 	* \EllisPitchTracker\conf\rats_sr8k_bpo6_sb24_k10.config
 * Under Additional runtime settingS
-	* for Windows, uncheck ìDo not display the Windows Command ShellÖî
-	* (optional) check Create log file, and call it something like ìVoxitLog.txtî, as this might help debugging
+	* for Windows, uncheck ‚ÄúDo not display the Windows Command Shell‚Ä¶‚Äù
+	* (optional) check Create log file, and call it something like ‚ÄúVoxitLog.txt‚Äù, as this might help debugging
 
 * In the upper right, click Package
 	* you should now find the installer executable in the folder you designated in Settings, /for_redistribution
