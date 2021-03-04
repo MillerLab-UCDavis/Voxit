@@ -31,7 +31,10 @@ if ~exist('fileinAudio','var')
    mp4filestruct = dir(['.' filesep '*.mp4']);
    flacfilestruct = dir(['.' filesep '*.flac']);
    oggfilestruct = dir(['.' filesep '*.ogg']);
-   allfilestruct = [wavfilestruct; mp3filestruct; m4afilestruct; mp4filestruct; flacfilestruct; oggfilestruct];
+   aifffilestruct = dir(['.' filesep '*.aiff']);
+   aiffilestruct = dir(['.' filesep '*.aif']);
+   aifcfilestruct = dir(['.' filesep '*.aifc']);
+   allfilestruct = [wavfilestruct; mp3filestruct; m4afilestruct; mp4filestruct; flacfilestruct; oggfilestruct; aifffilestruct; aiffilestruct; aifcfilestruct];
    fileinAudio = {allfilestruct.name};
 end
 
