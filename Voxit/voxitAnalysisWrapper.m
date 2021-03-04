@@ -35,7 +35,9 @@ measureNames = {'f0Mean',...
 overwrite = 1; %Overwrite existing WORLD object file with additional field for analysis results
 RowName = cell(length(fileinVobj),1); % files are row names in csv output
 
+h = waitbar(0,'Analyzing audio files...');
 for f = 1:length(fileinVobj)
+   waitbar(f/length(fileinVobj),h,['Analyzing audio file ' num2str(f) ' of ' num2str(length(fileinVobj))]);
    disp(['Analyzing ' fileinVobj{f}]);
    
    [S] = voxitAnalysis(fileinVobj{f},overwrite); % this is where all the action happens
@@ -63,6 +65,7 @@ for f = 1:length(fileinVobj)
        writetable(DataArray,DataFile);
    %end
 end
+close(h)
 
 T.Properties.DimensionNames{1}='file';
 

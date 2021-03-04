@@ -18,7 +18,7 @@ if isdeployed
 end
 
 % open gui for user to specify path
-selpath = uigetdir
+selpath = uigetdir([],'Select folder containing audio files')
 
 % Change directory to the data directory, with the sound files
 cd(selpath);
@@ -34,9 +34,12 @@ try
     % Run the voxit analysis
     voxitAnalysisWrapper;
 
+    disp('Done!')
+    waitbar(1,'Done!');
 catch ME
   fprintf(1, 'ERROR:\n%s\n', ME.message);
+  waitbar(1,'Something went wrong. Check error in file diary');
 end
 diary off
 
-disp("Done!")
+

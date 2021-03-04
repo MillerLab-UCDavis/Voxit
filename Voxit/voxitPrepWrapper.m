@@ -38,7 +38,9 @@ if ~exist('fileinAudio','var')
    fileinAudio = {allfilestruct.name};
 end
 
+h = waitbar(0,'Preparing audio files...');
 for f = 1:length(fileinAudio)
+    waitbar(f/length(fileinAudio),h,['Preparing audio file ' num2str(f) ' of ' num2str(length(fileinAudio))]);
     % Rename file if it has special or extended ascii characters, which will break some Matlab functions
     asciiOK = [32 45 46 48:57 65:90 95 97:122];
     if any(~ismember(double(fileinAudio{f}),asciiOK))
@@ -55,7 +57,7 @@ for f = 1:length(fileinAudio)
         voxitPrep(filepath,fileinAudio{f},spectKeep);
     end
 end
-
+close(h)
 if ~isdeployed
     % archive code
     mfileUsed = which('voxitPrep');
