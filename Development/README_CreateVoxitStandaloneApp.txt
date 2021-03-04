@@ -29,6 +29,6 @@ https://www.mathworks.com/help/compiler/create-and-install-a-standalone-applicat
 
 * In the upper right, click Package
 	* you should now find the installer executable in the folder you designated in Settings, /for_redistribution
-* In the upper left, click Save and save the project anywhere sensible
+* In the upper left, click Save and save the project anywhere sensible - that way you don't have to do all this next time!
 * Run the executable to install Voxit!
 
