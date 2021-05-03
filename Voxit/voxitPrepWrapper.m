@@ -54,7 +54,7 @@ for f = 1:length(fileinAudio)
     Sfile = [fname '_Vobj.mat'];
     if overwrite == 1 | ~exist(['.' filesep Sfile],'file')
         disp(['Converting ' fileinAudio{f} ' audio to Voxit object']);
-        voxitPrep(filepath,fileinAudio{f},spectKeep);
+        voxitPrep(filepath,fileinAudio{f},spectKeep); %This is where the action happens
     end
 end
 close(h)
