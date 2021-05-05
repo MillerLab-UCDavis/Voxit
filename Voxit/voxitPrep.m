@@ -171,8 +171,8 @@ gentlefile = [fileroot '.gentle.csv'];
 if exist(gentlefile,'file')
     disp('Getting info from the associated gentle file')
     [Gnum,Gtxt,Graw]=xlsread(gentlefile);
-    %Gtimes = Gnum(:,3:4); %assuming start and stop times of words are columns 3 and 4
-    Gtimes = round(Gnum.*10000)./10000; %round to nearest 10th of a millisecond to avoid aberrant rounding errors in csv
+    Gtimes = Gnum(:,1:2); %assuming start and stop times of words are columns 1 and 2
+    Gtimes = round(Gtimes.*10000)./10000; %round to nearest 10th of a millisecond to avoid aberrant rounding errors in csv
     fsG = 100; %assumes gentle sampling rate of 100Hz or period of 10ms
     GtimesNoNaN = Gtimes(~isnan(Gtimes)); % Gentle (fall 2019) outputs NaNs for non-aligned words. Ignore those when checking sampling rate.
     if find(mod(GtimesNoNaN,1/fsG))
