@@ -6,89 +6,45 @@ import sys
 import os
 import argparse
 
-csv.field_size_limit(sys.maxsize)
-
-parser = argparse.ArgumentParser(description = "Prosodic Measures")
-parser.add_argument("-r", "--remove", help = "0 to remove nothing, 1 to remove integers, or 1 to remove multiples of 60", required = True, choices=['0','1','2'], default = "")
-parser.add_argument("-s", "--specify", help = "Specify range of a recording", required = False, action='store_true', default = "")
-parser.add_argument("--gentle", help = "Directory path of gentle csv files", required = True, default = "")
-parser.add_argument("--drift", help = "Directory path of drift csv files", required = True, default = "")
-
-argument = parser.parse_args()
-status = False
-
-if argument.remove:
-    status = True
-if argument.gentle:
-    status = True
-if argument.drift:
-    status = True
-if not status:
-    exit()
-
 from lempel_ziv_complexity import lempel_ziv_complexity
 from numba import jit
 
-# Gentle and Drift directories must contain the same number of files
-gentle_directory_size = (len([name for name in os.listdir(argument.gentle) if not name.startswith('.')]))
-drift_directory_size = (len([name for name in os.listdir(argument.drift) if not name.startswith('.')]))
-if gentle_directory_size != drift_directory_size:
-    print('Error! Your Gentle and Drift directories must contain the same number of files.')
-    exit()
+def measure(gentlecsv, driftcsv, start_time, end_time):
 
-gentle_output = []
-drift_output = []
-pitch_multiples = {0,60,120,180,240,300,360,420,480,540,600}
-header = ['', 'WPM', 'Pause count', 'Pause count for 500ms', 'Pause count for 1000ms', 'Pause count for 1500ms', 'Pause count for 2000ms', 'Pause count for 2500ms', 
-          'Long pause count', 'Average pause length', 'Average pause rate', 'Rhythmic complexity of pauses', 'Average pitch', 'Pitch range', 'Pitch speed', 
-          'Pitch acceleration', 'Pitch entropy'
-         ]
+    csv.field_size_limit(sys.maxsize)
 
-if argument.specify:
-    if gentle_directory_size != 1 or drift_directory_size != 1:
-        print('Error! Your Gentle and Drift directories must contain only one file each to calculate within a specific time range.')
-        exit()
-    gentle_start_time = input("Please enter the Gentle start time: ")
-    gentle_end_time = input("Please enter the Gentle end time: ")
-    drift_start_time = input("Please enter the Drift start time: ")
-    drift_end_time = input("Please enter the Drift end time: ")
+    results = {}
 
-# GENTLE
-for index, filename in enumerate(sorted(os.listdir(argument.gentle))):
-    if filename.startswith('.'): # prevent decoding error 
-        continue
-    temp_output = [filename] # save filename for results.csv
+    # GENTLE
     gentle_start = []
     gentle_end = []
     gentle_wordcount = 0
     gentle_length = 0
     # Read the Gentle align csv file
-    with open(argument.gentle + '/' + filename, 'rt') as f:
-        gentle = csv.reader(f, delimiter=' ')
-        for row in gentle:
-            # Save measurements as list elements
-            measures = row[0].split(',')
-            if argument.specify:
-                # Start time
-                if float(gentle_start_time) > round(float(measures[2]) * 10000)/10000:
-                    continue
-                # End time
-                if float(gentle_end_time) < round(float(measures[3]) * 10000)/10000:
-                    continue
-            # Ignore noise
-            if measures[0] != '[noise]':
-                gentle_wordcount += 1
-                if not (measures[1] or measures[2] or measures[3]): # ignore rows with empty cells
-                    continue
-                gentle_start.append(round(float(measures[2]) * 10000)/10000)
-                gentle_end.append(round(float(measures[3]) * 10000)/10000)
-                gentle_length = float(measures[3]) * 10000/10000 # save the last length
+    gentle = csv.reader(gentlecsv, delimiter=' ')
+    for row in gentle:
+        # Save measurements as list elements
+        measures = row[0].split(',')
+        # Start time
+        if start_time and measures[2] and float(start_time) > round(float(measures[2]) * 10000)/10000:
+            continue
+        # End time
+        if end_time and measures[3] and float(end_time) < round(float(measures[3]) * 10000)/10000:
+            continue
+        # Ignore noise
+        if measures[0] != '[noise]':
+            gentle_wordcount += 1
+            if not (measures[1] or measures[2] or measures[3]): # ignore rows with empty cells
+                continue
+            gentle_start.append(round(float(measures[2]) * 10000)/10000)
+            gentle_end.append(round(float(measures[3]) * 10000)/10000)
+            gentle_length = float(measures[3]) * 10000/10000 # save the last length
 
     # Speaking rate calculated as words per minute, or WPM.
     # Divided by the length of the recording and normalized if the recording was longer
     # or shorter than one minute to reflect the speaking rate for 60 seconds.
     WPM = math.floor(gentle_wordcount / (gentle_length / 60))
-    temp_output.append(WPM)
+    results["WPM"] = WPM
 
     # Pause counts and average pause length.
     # We do not consider pauses less than 100 ms because fully continuous speech also naturally has such brief gaps in energy,
@@ -109,21 +65,21 @@ for index, filename in enumerate(sorted(os.listdir(argument.gentle))):
             long_pause_count += 1
 
     # Pause counts
-    temp_output.append(pause_count)
+    results["pause_count"] = pause_count
 
-    while start_pause < max_pause:
-        tmp_pause_count = 0
-        for x in range(0, len(gentle_end) - 1):
-            tmp = gentle_start[x + 1] - gentle_end[x]
-            if tmp >= start_pause and tmp <= max_pause:
-            	tmp_pause_count += 1
-        temp_output.append(tmp_pause_count)
-        start_pause += 0.5
+    # while start_pause < max_pause:
+    #     tmp_pause_count = 0
+    #     for x in range(0, len(gentle_end) - 1):
+    #         tmp = gentle_start[x + 1] - gentle_end[x]
+    #         if tmp >= start_pause and tmp <= max_pause:
+    #             tmp_pause_count += 1
+    #     temp_output.append(tmp_pause_count)
+    #     start_pause += 0.5
 
-    temp_output.append(long_pause_count)
+    results["long_pause_count"] = long_pause_count
 
     APL = decimal.Decimal(sum / pause_count)
-    temp_output.append(round(APL, 2))
+    results["average_pause_length"] = float(round(APL, 2))
 
     # Average pause rate per second.
     pause_count = 0
@@ -133,7 +89,7 @@ for index, filename in enumerate(sorted(os.listdir(argument.gentle))):
             pause_count += 1
 
     APR = decimal.Decimal(pause_count / gentle_length)
-    temp_output.append(round(APR, 3))
+    results["average_pause_rate"] = float(round(APR, 3))
 
     # Rhythmic Complexity of Pauses
     s = []
@@ -174,113 +130,105 @@ for index, filename in enumerate(sorted(os.listdir(argument.gentle))):
 
     # Normalized
     CP = lempel_ziv_complexity("".join([str(i) for i in s])) / (len(s) / math.log2(len(s)))
-    temp_output.append(CP * 100)
+    results["rhythmic_complexity_of_pauses"] = CP * 100
 
-    # results.csv
-    gentle_output.append(temp_output)
     # Output message
-    print('SYSTEM: Finished calculating file', filename)
+    print('SYSTEM: Finished calculating file')
 
-# DRIFT
-for index, filename in enumerate(sorted(os.listdir(argument.drift))):
-    if filename.startswith('.'): # prevent decoding error 
-        continue
-    temp_output = []
+    # DRIFT
     drift_time = []
     drift_pitch = []
     # Read the Drift align csv file
-    with open(argument.drift + '/' + filename, 'rt') as f:
-        init = True
-        skip = True
-        run = False
-        ixtmp = []
-        index = -1
-        zero_count = 0
-        int_count = 0
-        drift = csv.reader(f, delimiter=' ')
-        i = 1
-        for row in drift:
-            # Save measurements as list elements
-            measures = row[0].split(',')
-            if argument.specify:
-                if init:
-                    init = False
-                    continue
-                # Start time
-                if float(drift_start_time) > float(measures[0]):
-                    continue
-                # End time
-                if float(drift_end_time) < float(measures[0]):
-                    continue
-            if argument.remove is '0':
-                # Ignore first line and filter out integer pitch values
-                # Voiced pitch only
-                if skip or not measures[1]:
-                    skip = False
-                    continue
-                elif float(measures[1]) != 0:
-                    drift_time.append(float(measures[0]))
-                    drift_pitch.append(float(measures[1]))
-                    index += 1
-                    # Find voiced periods
-                    if (run is False): # start of pitch
-                        start = index
-                        run = True
-                    else: # run is true so save pitch to record the end
-                        temp = index 
-                # ixtmp
-                elif float(measures[1]) == 0 and run is True:
-                    run = False
-                    end = temp
-                    ixtmp.append([start,end])
-            elif argument.remove is '1':
-                # Ignore first line and filter out integer pitch values
-                # Voiced pitch only
-                if skip or not measures[1]:
-                    skip = False
-                    continue
-                elif float(measures[1]).is_integer() is False:
-                    drift_time.append(float(measures[0]))
-                    drift_pitch.append(float(measures[1]))
-                    index += 1
-                    # Find voiced periods
-                    if (run is False): # start of pitch
-                        start = index
-                        run = True
-                    else: # run is true so save pitch to record the end
-                        temp = index 
-                # ixtmp
-                elif float(measures[1]).is_integer() is True and run is True:
-                    run = False
-                    end = temp
-                    ixtmp.append([start,end])
-            elif argument.remove is '2':
-                # Ignore first line and filter out integer pitch values
-                # Voiced pitch only
-                if skip or not measures[1]:
-                    skip = False
-                    continue
-                elif float(measures[1]) not in pitch_multiples:
-                    drift_time.append(float(measures[0]))
-                    drift_pitch.append(float(measures[1]))
-                    index += 1
-                    # Find voiced periods
-                    if (run is False): # start of pitch
-                        start = index
-                        run = True
-                    else: # run is true so save pitch to record the end
-                        temp = index 
-                # ixtmp
-                elif float(measures[1]) in pitch_multiples and run is True:
-                    run = False
-                    end = temp
-                    ixtmp.append([start,end])
+    init = True
+    skip = True
+    run = False
+    ixtmp = []
+    index = -1
+    zero_count = 0
+    int_count = 0
+    drift = csv.reader(driftcsv, delimiter=' ')
+    i = 1
+    for row in drift:
+        # Save measurements as list elements
+        measures = row[0].split(',')
+        if init:
+            init = False
+            continue
+        # Start time
+        if start_time and float(start_time) > float(measures[0]):
+            continue
+        # End time
+        if end_time and float(end_time) < float(measures[0]):
+            continue
+        # if argument.remove is '0':
+        # Ignore first line and filter out integer pitch values
+        # Voiced pitch only
+        if skip or not measures[1]:
+            skip = False
+            continue
+        elif float(measures[1]) != 0:
+            drift_time.append(float(measures[0]))
+            drift_pitch.append(float(measures[1]))
+            index += 1
+            # Find voiced periods
+            if (run is False): # start of pitch
+                start = index
+                run = True
+            else: # run is true so save pitch to record the end
+                temp = index 
+        # ixtmp
+        elif float(measures[1]) == 0 and run is True:
+            run = False
+            end = temp
+            ixtmp.append([start,end])
+        # elif argument.remove is '1':
+        #     # Ignore first line and filter out integer pitch values
+        #     # Voiced pitch only
+        #     if skip or not measures[1]:
+        #         skip = False
+        #         continue
+        #     elif float(measures[1]).is_integer() is False:
+        #         drift_time.append(float(measures[0]))
+        #         drift_pitch.append(float(measures[1]))
+        #         index += 1
+        #         # Find voiced periods
+        #         if (run is False): # start of pitch
+        #             start = index
+        #             run = True
+        #         else: # run is true so save pitch to record the end
+        #             temp = index 
+        #     # ixtmp
+        #     elif float(measures[1]).is_integer() is True and run is True:
+        #         run = False
+        #         end = temp
+        #         ixtmp.append([start,end])
+        # elif argument.remove is '2':
+        #     # Ignore first line and filter out integer pitch values
+        #     # Voiced pitch only
+        #     if skip or not measures[1]:
+        #         skip = False
+        #         continue
+        #     elif float(measures[1]) not in pitch_multiples:
+        #         drift_time.append(float(measures[0]))
+        #         drift_pitch.append(float(measures[1]))
+        #         index += 1
+        #         # Find voiced periods
+        #         if (run is False): # start of pitch
+        #             start = index
+        #             run = True
+        #         else: # run is true so save pitch to record the end
+        #             temp = index 
+        #     # ixtmp
+        #     elif float(measures[1]) in pitch_multiples and run is True:
+        #         run = False
+        #         end = temp
+        #         ixtmp.append([start,end])
 
-            # Integer counts
-            if float(measures[1]) == 0:
-                zero_count += 1
-            elif float(measures[1]).is_integer():
-                int_count += 1
+    # Integer counts
+    if float(measures[1]) == 0:
+        zero_count += 1
+    elif float(measures[1]).is_integer():
+        int_count += 1
 
     # Average Pitch (mean f0, or fundamental frequency, sampled every 10 milliseconds), of each voice in Hertz
     count = 0
@@ -295,7 +243,7 @@ for index, filename in enumerate(sorted(os.listdir(argument.drift))):
             break
 
     AP = sum / count
-    temp_output.append(AP)
+    results["average_pitch"] = AP
 
     # Pitch pre-calculations
 
@@ -341,7 +289,7 @@ for index, filename in enumerate(sorted(os.listdir(argument.drift))):
     # max(diffoctf0(ivuv))-min(diffoctf0(ivuv));
     PR = max(diffoctf0) - min(diffoctf0)
     # print('7. Pitch range:', PR, 'octaves')
-    temp_output.append(PR)
+    results["pitch_range"] = PR
 
     # Pitch speed and acceleration pre-calculations
 
@@ -391,7 +339,7 @@ for index, filename in enumerate(sorted(os.listdir(argument.drift))):
     f0velocity_mean = sum / len(f0velocity)
 
     PS = f0velocity_mean * numpy.sign(numpy.mean(f0velocity,0))
-    temp_output.append(PS)
+    results["pitch_speed"] = PS
 
     # S.analysis.f0contour = mean(abs(f0accel)) * sign(mean(f0accel)); %signed directionless acceleration
     sum =  0
@@ -400,7 +348,7 @@ for index, filename in enumerate(sorted(os.listdir(argument.drift))):
     f0accel_mean = sum / len(f0accel_d2)
 
     PA = f0accel_mean * numpy.sign(numpy.mean(f0accel_d2,0))
-    temp_output.append(PA)
+    results["pitch_acceleration"] = PA
 
     # Pitch Entropy, or entropy for f0, indicating the predictability of pitch patterns
     # f0entropy = -sum(f0prob.*f0log2prob);
@@ -408,19 +356,6 @@ for index, filename in enumerate(sorted(os.listdir(argument.drift))):
     for i in range(0, len(f0prob)):
         f0entropy += f0prob[i] * f0log2prob[i]
     PE = -f0entropy
-    temp_output.append(PE)
-
-    # results.csv
-    drift_output.append(temp_output)
-    # Output message
-    print('SYSTEM: Finished calculating file', filename)
-
-# Save to results.csv 
-with open('results.csv', 'w') as f:
-    writer = csv.writer(f)
-    writer.writerow(header)
-    for g, d in zip(gentle_output, drift_output):
-        output = []
-        [output.append(x) for x in g]
-        [output.append(y) for y in d]
-        writer.writerow(output)
+    results["pitch_entropy"] = PE
+    
+    return results
