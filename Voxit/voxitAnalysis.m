@@ -438,10 +438,9 @@ S.analysis.Corrf0IntensityPvalue = corrf0Ipval(1,2);
 
 %%  COMPOSITE METRICS
 a=S.analysis;
-%S.analysis.dynamism = (abs(a.f0speed) * a.f0entropy) + (a.complexitySyllables+a.complexityPhrases)/2*0.439; % 43.9 brings it into
-%same range as first term, used for the final 100poets analysis.  1/2*0.439 = 0.2195
+S.analysis.dynamism = (abs(a.f0speed) * a.f0entropy) + (a.complexitySyllables+a.complexityPhrases)/2*0.439; % 43.9 brings it into same range as first term, used for the final 100poets analysis.  1/2*0.439 = 0.2195
 %S.analysis.Dynamism = abs(a.f0MeanAbsVelocity)/1.092050992 + a.f0Entropy/3.331034878 + (a.ComplexitySyllables/13.18735087+a.ComplexityPhrases/3.022951534)/2; % bring terms into same range ~1
-S.analysis.Dynamism = (a.f0MeanAbsVelocity/.1167627388 + a.f0Entropy/.3331034878)/2 + a.ComplexityAllPauses/.6691896835; % normalization factors from 100 poets, so each term ~10
+%S.analysis.Dynamism = (a.f0MeanAbsVelocity/.1167627388 + a.f0Entropy/.3331034878)/2 + a.ComplexityAllPauses/.6691896835; % normalization factors from 100 poets, so each term ~10
 
 
 %% OVERWRITE Voxit OBJECT FILE with new fields included
