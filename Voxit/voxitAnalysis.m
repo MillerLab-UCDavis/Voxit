@@ -349,8 +349,8 @@ Iaccel = [];
 for i = 1:size(ixvoicedbounds,1)  %the loop makes sure we're not calculating velocity etc across segments
     difflogItmp = difflogI(ixvoicedbounds(i,1):ixvoicedbounds(i,2));    
     IsegmentMeans = [IsegmentMeans; mean(difflogItmp)];
-    Ivelocity = [Ivelocity; diff(difflogItmp)/ts]; %norm by sampling period, so in log power per sec
-    Iaccel = [Iaccel; diff(diff(difflogItmp))/ts]; %in log power per sec per sec
+    Ivelocity = [Ivelocity; diff(difflogItmp)/ts]; %norm by sampling period, so in dB per sec
+    Iaccel = [Iaccel; diff(diff(difflogItmp))/ts]; %in dB per sec per sec
 end
 
 S.analysis.Intensity = logPower;
