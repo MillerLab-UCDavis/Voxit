@@ -1,5 +1,5 @@
 # VOXIT: Vocal Analysis Tools
-Automated analysis of voice-speech parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). Standalone executable does NOT require a Matlab license; using the full editable codebase does.\
+Automated analysis of voice-speech parameters in audio recordings, by [Lee M. Miller](https://millerlab.faculty.ucdavis.edu/) in collaboration with [Marit J. MacArthur](https://writing.ucdavis.edu/people/mjmacart/) and Robert Ochshorn (author of [Gentle](http://lowerquality.com/gentle/) and [Drift](http://drift3.lowerquality.com)). A Python version of Voxit is under development. Currently, the standalone executable does NOT require a Matlab license; using the full editable codebase does.\
 \
 Please, PLEASE let us know if you are using Voxit -- this will help us continue the project! Just add your name and affiliation in the Discussion (see button above) entitled "Voxit users: please add your name!"
 
