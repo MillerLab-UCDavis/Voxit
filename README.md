@@ -75,13 +75,13 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 <br/>
 
 Other publications or media works exemplifying Voxit:
-MacArthur, Marit and Miller, Lee M.  “Vocal Deformance and Performative Speech, or in Different Voices!” Sounding Out! October 24, 2016. Web. [Multimedia piece]
+MacArthur, Marit and Miller, Lee M.  “Vocal Deformance and Performative Speech, or in Different Voices!” Sounding Out! October 24, 2016. Web. [Multimedia piece]<br/>
 <br/>
-After Scansion: Visualizing, Deforming and Listening to Poetic Prosody.” Stanford ARCADE Colloquy Series: Alternative Histories of Prosody, Dec. 13, 2018. [Essay and podcast]
+After Scansion: Visualizing, Deforming and Listening to Poetic Prosody.” Stanford ARCADE Colloquy Series: Alternative Histories of Prosody, Dec. 13, 2018. [Essay and podcast]<br/>
 <br/>
-“Slow Listening: Digital Voice Studies and Literary Recordings.” The Cambridge Companion to Literature in the Digital Age. Ed. Adam Hammond. New York: Cambridge UP, forthcoming 2023.
+“Slow Listening: Digital Voice Studies and Literary Recordings.” The Cambridge Companion to Literature in the Digital Age. Ed. Adam Hammond. New York: Cambridge UP, forthcoming 2023.<br/>
 <br/>
-“Slow Listening: Digital Tools for Voice Studies.” Forthcoming in a special issue on Tool Criticism, Digital Humanities Quarterly, 2023.
+“Slow Listening: Digital Tools for Voice Studies.” Forthcoming in a special issue on Tool Criticism, Digital Humanities Quarterly, 2023.<br/>
 <br/>
 MacArthur, Marit, Rambsy, Howard, Wu, Xiaoliu, Ding, Qin and Miller, Lee M. “101 Black Women Poets in Mainly White and Mainly Black Rooms.” Los Angeles Review of Books. Aug. 27, 2022. Web.
 
