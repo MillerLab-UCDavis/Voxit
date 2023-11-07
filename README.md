@@ -62,7 +62,7 @@ ii) There should now be an output *voxitResults*.csv file in the audio file dire
 Voxit works in two steps, first *voxitPrepWrapper* which creates the _*Vobj.mat_ files that contain the WORLD output, and then *voxitAnalysisWrapper* which calculates and appends the vocal analysis values to it. The default csv only contains a subset of the analyzed measures. For a complete list, load the Vobj.mat file and list the structure fields in *S.analysis*. You can add any of these measures to the csv output (provided they are scalar values) by going into voxitAnalysisWrapper and editing the variable *measureNames* with your desired field names.
 
 ___________________________________________________________________
-<h2>ACKNOWLEDGMENTS:</h2>
+<h2>ACKNOWLEDGMENTS and PUBLICATIONS:</h2>
 When you cite Voxit -- and please do so -- include the articles:
 [MacArthur MJ, Zellou G, Miller LM (2018)](http://culturalanalytics.org/2018/04/beyond-poet-voice-sampling-the-non-performance-styles-of-100-american-poets/). Beyond Poet Voice: Sampling the (Non-) Performance Styles of 100 American Poets. Journal of Cultural Analytics DOI: 10.7910/DVN/OJI8NB. and our [Stanford Arcade piece](https://arcade.stanford.edu/content/after-scansion-visualizing-deforming-and-listening-poetic-prosody/). These also give some background, motivation, and validation of the approach for those who want to learn more.<br/>
 <br/>
@@ -73,6 +73,18 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413<br/>
 <br/>
+
+Other publications or media works exemplifying Voxit:
+MacArthur, Marit and Miller, Lee M.  “Vocal Deformance and Performative Speech, or in Different Voices!” Sounding Out! October 24, 2016. Web. [Multimedia piece]
+<br/>
+After Scansion: Visualizing, Deforming and Listening to Poetic Prosody.” Stanford ARCADE Colloquy Series: Alternative Histories of Prosody, Dec. 13, 2018. [Essay and podcast]
+<br/>
+“Slow Listening: Digital Voice Studies and Literary Recordings.” The Cambridge Companion to Literature in the Digital Age. Ed. Adam Hammond. New York: Cambridge UP, forthcoming 2023.
+<br/>
+“Slow Listening: Digital Tools for Voice Studies.” Forthcoming in a special issue on Tool Criticism, Digital Humanities Quarterly, 2023.
+<br/>
+MacArthur, Marit, Rambsy, Howard, Wu, Xiaoliu, Ding, Qin and Miller, Lee M. “101 Black Women Poets in Mainly White and Mainly Black Rooms.” Los Angeles Review of Books. Aug. 27, 2022. Web.
+
 
 **The development of Voxit has been generously supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.**
 
