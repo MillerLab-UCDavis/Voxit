@@ -74,7 +74,7 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413<br/>
 <br/>
 
-<h2>Other publications or media works exemplifying Voxit:</h2><br/>
+**Other publications or media works exemplifying Voxit:**<br/>
 <br/>
 MacArthur, Marit and Miller, Lee M.  “Vocal Deformance and Performative Speech, or in Different Voices!” Sounding Out! October 24, 2016. Web. [Multimedia piece]<br/>
 <br/>
@@ -84,8 +84,8 @@ After Scansion: Visualizing, Deforming and Listening to Poetic Prosody.” Stanf
 <br/>
 “Slow Listening: Digital Tools for Voice Studies.” Forthcoming in a special issue on Tool Criticism, Digital Humanities Quarterly, 2023.<br/>
 <br/>
-MacArthur, Marit, Rambsy, Howard, Wu, Xiaoliu, Ding, Qin and Miller, Lee M. “101 Black Women Poets in Mainly White and Mainly Black Rooms.” Los Angeles Review of Books. Aug. 27, 2022. Web.
-
+MacArthur, Marit, Rambsy, Howard, Wu, Xiaoliu, Ding, Qin and Miller, Lee M. “101 Black Women Poets in Mainly White and Mainly Black Rooms.” Los Angeles Review of Books. Aug. 27, 2022. Web.<br/>
+<br/>
 
 **The development of Voxit has been generously supported by an ACLS Digital Innovations Fellowship and by Tools for Listening to Text-in-Performance, a NEH-funded grant project: https://textinperformance.soc.northwestern.edu/. Its continued development is supported by SpokenWeb, a SSHRC-funded grant project: https://spokenweb.ca/.**
 
