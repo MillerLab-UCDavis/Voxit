@@ -74,7 +74,8 @@ Please also cite WORLD. As per M. Morise's [request](https://github.com/mmorise/
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413<br/>
 <br/>
 
-Other publications or media works exemplifying Voxit:
+<h2>Other publications or media works exemplifying Voxit:</h2><br/>
+<br/>
 MacArthur, Marit and Miller, Lee M.  “Vocal Deformance and Performative Speech, or in Different Voices!” Sounding Out! October 24, 2016. Web. [Multimedia piece]<br/>
 <br/>
 After Scansion: Visualizing, Deforming and Listening to Poetic Prosody.” Stanford ARCADE Colloquy Series: Alternative Histories of Prosody, Dec. 13, 2018. [Essay and podcast]<br/>
