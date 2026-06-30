@@ -29,8 +29,8 @@ filein = {lstruct.name};
 %manipulation = {'flat','flip'};
 %manipulation = {'flat'};
 %manipulation = {'stress2pitch'};
-%manipulation = {'pitchNsize'};
-manipulation = {'flat','flip','MFM','pitchNsize'};
+manipulation = {'pitchNsize'};
+%manipulation = {'flat','flip','MFM','pitchNsize'};
 %rmsnorm = 0.05;
 rmsnorm = 0.1;
 

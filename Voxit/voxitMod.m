@@ -1,4 +1,6 @@
 function [newsound,fs] = voxitMod(filein,manipulation,rmsnorm)
+error(['THIS NEEDS WORK. still uses STRAIGHT object for most of it, though we moved to using WORLD for Voxit' ...
+    ' see also voiceModSTRAIGHT in the cheech repo'])
 % VOXIT MOD modifies vocal parameters in a Voxit object file and resynthsizes the sound
 %
 % IMPORTANT: the resynthesis requires the spectrogram to be kept
@@ -21,7 +23,13 @@ disp('CONFIRM THAT WE STILL HAVE THE SPECTROGRAM AND APERIODICITY')
 %S= STRAIGHTobject;
 
 % get the pitch contour
-f0_original = S.SAcC.f0;
+if isfield(S,'SAac.f0')
+    f0_original = S.SAcC.f0;
+    disp('Using SAaC pitch, not STRAGHT')
+else
+    f0_original = S.refinedF0Structure.f0;
+    disp('Using STRAIGHT pitch as there is no SAcC')
+end
 
 %IF desired, remove  very brief voiced periods (may help with noisy audio? maybe no diff at all)
 % vuvmin = 5; % duration of minimum voiced period, in samples (default 5ms period)
@@ -103,8 +111,11 @@ switch manipulation
         
         nFrames = length(S.f0_parameter.temporal_positions);
         sizeModifier = ones(nFrames,1).*0.8;  % make this an argin! <1 makes size smaller
-        baseFrequency = (0:size(S.spectrum_parameter.temporal_positions,1)-1)/...
-            (size(S.spectrum_parameter.temporal_positions,1)-1)/2*S.samplingFrequency;
+%         baseFrequency = (0:size(S.spectrum_parameter.temporal_positions,1)-1)/...
+%             (size(S.spectrum_parameter.temporal_positions,1)-1)/2*S.samplingFrequency;
+        baseFrequency = (0:length(S.spectrum_parameter.temporal_positions)-1)/...
+            (length(S.spectrum_parameter.temporal_positions)-1)/2*S.samplingFrequency;
+
         for ii = 1:nFrames
             S.f0_parameter.temporal_positions(:,ii) = interp1(baseFrequency,...
                 S.f0_parameter.temporal_positions(:,ii),...
